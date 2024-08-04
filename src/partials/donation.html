@@ -1,54 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donation Manager</title>
-  <style>
-    .hidden { display: none; }
-    .btn { width: 100px; height: 55px; border: 1px solid red; background-color: white; cursor: pointer; }
-    .btn:hover, .btn:focus { background-color: red; }
-    .btns { display: flex; gap: 10px; }
-    .message { color: red; }
-  </style>
-</head>
-<body>
-  <div id="amount-selection">
-    <div class="btns">
-      <button class="btn" onclick="selectAmount('5')">Donate £5</button>
-      <button class="btn" onclick="selectAmount('10')">Donate £10</button>
-      <button class="btn" onclick="selectAmount('15')">Donate £15</button>
-    </div>
-    <label>
-      Or enter your own amount:
-      <input type="number" id="custom-amount">
-    </label>
-    <button onclick="continueToDetails()">Continue</button>
-    <p id="amount-message" class="message"></p>
+<div id="amount-selection">
+  <div class="btns">
+    <button class="btn" onclick="selectAmount('5')">Donate £5</button>
+    <button class="btn" onclick="selectAmount('10')">Donate £10</button>
+    <button class="btn" onclick="selectAmount('15')">Donate £15</button>
   </div>
-
-  <div id="payment-details" class="hidden">
-    <h2>Select Payment Method</h2>
-    <button class="btn" id="gocardless" onclick="setPaymentMethod('gocardless')">GoCardless</button>
-    <button class="btn" id="paypal" onclick="setPaymentMethod('paypal')">PayPal</button>
-    <form id="donation-form" class="hidden" onsubmit="handleSubmit(event)">
-      <label>
-        Email:
-        <input type="email" id="email" required>
-      </label><br>
-      <label>
-        Given Name:
-        <input type="text" id="given-name" required>
-      </label><br>
-      <label>
-        Family Name:
-        <input type="text" id="family-name">
-      </label><br>
-      <button type="submit">Make Donation</button>
-    </form>
-    <p id="payment-message" class="message"></p>
-  </div>
-
-  <script src="donation.js"></script>
-</body>
-</html>
+  <label>
+    Or enter your own amount:
+    <input type="number" id="custom-amount" />
+  </label>
+  <button id="open-modal-btn" onclick="continueToDetails()">Continue</button>
+  <p id="amount-message" class="message"></p>
+</div>
