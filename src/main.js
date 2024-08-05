@@ -243,38 +243,7 @@ import page from 'page';
 import './css/styles.css';
 import './css/donation.css';
 
-// Налаштування маршрутів
-page('/', () => {
-  document.body.innerHTML =
-    '<h1>Welcome to the Charity Site</h1><a href="/donation">Go to Donation Page</a>';
-});
-
-page('/donation', async () => {
-  await loadDonationPage();
-});
-
-// Запуск маршрутизації
-page();
-
-let scrollPosition = 0;
-let amount = '';
-let paymentMethod = '';
-
-async function loadDonationPage() {
-  try {
-    const response = await fetch('/donation.html');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const content = await response.text();
-    document.body.innerHTML = content;
-    initializeDonationPage();
-  } catch (error) {
-    console.error('Error loading donation page:', error);
-  }
-}
-
-function initializeDonationPage() {
+export function initializeDonationPage() {
   window.selectAmount = selectAmount;
   window.continueToDetails = continueToDetails;
   window.setPaymentMethod = setPaymentMethod;
@@ -297,7 +266,7 @@ function initializeDonationPage() {
   }
 }
 
-function selectAmount(selectedAmount) {
+export function selectAmount(selectedAmount) {
   amount = selectedAmount;
   const buttons = document.querySelectorAll('#amount-selection .btn');
   buttons.forEach(btn => btn.classList.remove('active'));
@@ -309,7 +278,7 @@ function selectAmount(selectedAmount) {
   }
 }
 
-function continueToDetails() {
+export function continueToDetails() {
   const customAmount = document.getElementById('custom-amount').value;
   if (amount || customAmount) {
     amount = amount || customAmount;
@@ -321,7 +290,7 @@ function continueToDetails() {
   }
 }
 
-function handleModalEvent(event) {
+export function handleModalEvent(event) {
   if (
     event.key === 'Escape' ||
     event.target.matches('.payment-modal, .payment-modal .close')
@@ -332,7 +301,7 @@ function handleModalEvent(event) {
 
 let modalContentBackup = null;
 
-function openModal() {
+export function openModal() {
   const modal = document.getElementById('payment-modal');
   if (modal) {
     if (!modalContentBackup) {
@@ -348,7 +317,7 @@ function openModal() {
   }
 }
 
-async function closeModal() {
+export async function closeModal() {
   const modal = document.getElementById('payment-modal');
   if (modal) {
     modal.style.display = 'none';
@@ -361,7 +330,7 @@ async function closeModal() {
   }
 }
 
-function setPaymentMethod(method) {
+export function setPaymentMethod(method) {
   paymentMethod = method;
   const paymentButtons = {
     paypal: document.getElementById('paypal'),
@@ -384,7 +353,7 @@ function setPaymentMethod(method) {
   if (title) title.classList.add('hidden');
 }
 
-async function handleSubmit(event) {
+export async function handleSubmit(event) {
   event.preventDefault();
 
   const email = document.getElementById('email').value;
@@ -437,5 +406,32 @@ async function handleSubmit(event) {
     console.error('Error:', error.message || error);
     paymentMessage.textContent =
       'Error processing donation. Please try again later.';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeDonationPage();
+});
+page('/donation', async () => {
+  await loadDonationPage();
+});
+
+page();
+
+let scrollPosition = 0;
+let amount = '';
+let paymentMethod = '';
+
+export async function loadDonationPage() {
+  try {
+    const response = await fetch('/donation.html');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const content = await response.text();
+    document.body.innerHTML = content;
+    initializeDonationPage();
+  } catch (error) {
+    console.error('Error loading donation page:', error);
   }
 }

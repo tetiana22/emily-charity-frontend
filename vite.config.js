@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import glob from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 
@@ -14,8 +13,7 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         input: {
           main: './src/index.html', // основний HTML-файл
-          donation: './src/donation.html', // інший HTML-файл
-          modal: './src/modal.html', // інший HTML-файл
+          donation: '/donation.html', // інший HTML-файл
         },
         output: {
           manualChunks(id) {
