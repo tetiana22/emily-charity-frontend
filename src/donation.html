@@ -1,12 +1,56 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation</title>
+    <link rel="stylesheet" href="./css/donation.css" />
+  </head>
+  <body>
+    <h1>Donation Page</h1>
+    <div id="amount-selection">
+      <div class="btns">
+        <button class="btn" onclick="selectAmount('5')">Donate £5</button>
+        <button class="btn" onclick="selectAmount('10')">Donate £10</button>
+        <button class="btn" onclick="selectAmount('15')">Donate £15</button>
+      </div>
+      <label>
+        Or enter your own amount:
+        <input type="number" id="custom-amount" />
+      </label>
+      <button id="open-modal-btn" onclick="continueToDetails()">
+        Continue
+      </button>
+      <p id="amount-message" class="message"></p>
+    </div>
+
+    <script type="module" src="./main.js" defer></script>
+  </body>
+</html> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Donation</title>
-    <link rel="stylesheet" href="./css/modal.css" />
+    <link rel="stylesheet" href="./css/donation.css" />
   </head>
   <body>
+    <div id="amount-selection">
+      <div class="btns">
+        <button class="btn" onclick="selectAmount('5')">Donate £5</button>
+        <button class="btn" onclick="selectAmount('10')">Donate £10</button>
+        <button class="btn" onclick="selectAmount('15')">Donate £15</button>
+      </div>
+      <label>
+        Or enter your own amount:
+        <input type="number" id="custom-amount" />
+      </label>
+      <button id="open-modal-btn" onclick="continueToDetails()">
+        Continue
+      </button>
+      <p id="amount-message" class="message"></p>
+    </div>
     <div id="payment-modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -40,23 +84,15 @@
           >
             <label for="email">Email:</label>
             <input type="email" id="email" required />
-
             <label for="given-name">Name:</label>
             <input type="text" id="given-name" required />
-
             <label for="family-name">Surname:</label>
             <input type="text" id="family-name" />
-
             <button type="submit">Make Donation</button>
           </form>
           <p id="payment-message" class="message"></p>
         </div>
       </div>
     </div>
-   
-   
-  <script type="module" src="./main.js" defer></script>
-  </body>
-</html>
   </body>
 </html>

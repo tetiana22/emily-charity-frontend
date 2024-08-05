@@ -11,20 +11,23 @@ export default defineConfig(({ command }) => {
     root: 'src',
     build: {
       sourcemap: true,
-
       rollupOptions: {
-        input: glob.sync('./src/*.html'),
+        input: {
+          main: './src/index.html', // основний HTML-файл
+          donation: './src/donation.html', // інший HTML-файл
+          modal: './src/modal.html', // інший HTML-файл
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
             }
           },
-          entryFileNames: 'commonHelpers.js',
+          entryFileNames: '[name].js',
         },
       },
-      outDir: '../dist',
+      outDir: '../dist', // директорія для збірки
     },
-    plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
+    plugins: [injectHTML(), FullReload(['./src/*.html'])],
   };
 });
