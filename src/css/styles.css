@@ -1,27 +1,308 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
 @import url('./reset.css');
 @import url('./vite-promo.css');
-@import url('./header.css');
 @import url('./donation.css');
 @import url('./modal.css');
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif, satisfy-regular;
+
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
-
+  background-color: white;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+.satisfy-regular {
+  font-family: 'Satisfy', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 100%;
+  max-width: 375px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .container {
+    max-width: 1440px;
+    padding: 0 60px;
+  }
+}
+.section {
+  width: 100%;
+}
+/*header*/
+/* Загальні стилі для header */
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Satisfy', cursive;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  height: 60px;
+}
+
+.name {
+  color: #9fa666;
+}
+
+.name span {
+  color: rgb(244, 32, 32);
+}
+
+.logo {
+  float: left;
+}
+
+.logo:hover {
+  color: red;
+}
+nav {
+  margin-left: auto;
+}
+.nav-links {
+  list-style: none;
+  padding: 0;
+
+  gap: 20px;
+}
+.nav-links-main li {
+  display: inline;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.burger-menu {
+  display: none;
+}
+
+/* Стилі для випливаючого меню */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.mobile-nav.show {
+  transform: translateX(0);
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 760px) {
+  .main-nav {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block;
+    margin-left: auto;
+    background: none;
+    border: none;
+  }
+}
+@media (min-width: 761px) {
+  .mobile-nav {
+    display: none;
+    transform: translateX(100%);
+  }
+  .overlay {
+    display: none;
+  }
+}
+/*main*/
+.main {
+  gap: 20px;
+  background-image: url('../img/floral.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+  height: 300px;
+}
+.main p {
+  font-weight: 800;
+  font-size: 28px;
+  font-family: 'Satisfy', cursive;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.donate-button {
+  padding: 0 10px;
+  background-color: rgb(244, 32, 32);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  height: 35px;
+  line-height: 35px; /* Вирівнює текст по вертикалі */
+  text-align: center; /* Вирівнює текст по горизонталі */
+  transition: background-color 0.3s;
+}
+.donate-button:hover {
+  background-color: rgb(200, 0, 0); /* Темніший відтінок при наведенні */
+}
+.main img {
+  width: 160px;
+  height: 160px;
+  display: block;
+  margin: 0 auto 20px;
+  object-fit: cover;
+  border-radius: 100px;
+  transition: transform 0.3s;
+}
+.main-about {
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Вміст розміщується вертикально */
+  align-items: center; /* Центрує елементи всередині контейнера */
+  text-align: center;
+}
+header img:hover {
+  transform: scale(1.05);
+}
+
+section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  margin-top: 0;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.contact,
+.social {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.social a {
+  color: white;
+  text-decoration: none;
+}
+
+.social a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
