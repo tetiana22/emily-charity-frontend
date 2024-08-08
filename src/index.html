@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Charity</title>
+    <title>Emily's Charity</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon_io/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
@@ -18,12 +19,18 @@
       href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon_io/favicon-32x32.png"
+    />
   </head>
   <body>
     <div id="content"></div>
-    <div id="home" class="section">
+    <div id="home" class="section container">
       <header>
-        <div class="header-container container">
+        <div class="header-container">
           <img
             src="./img/logo.png"
             alt="logo"
@@ -54,28 +61,45 @@
           </nav>
         </div>
       </header>
-      <!-- <p>
-          A small charity set up by Emily's family and friends, to fund
-          opportunities for primary school children who would otherwise be
-          disadvantaged, to take part in activities that will make a difference
-          to their future and inspire them.
-        </p> -->
-      <section class="main">
-        <div class="main-about">
-          <img src="./img/em.jpg" alt="Emily Charity" />
-          <p>A small charity set up by Emily's family and friends.</p>
-          <a href="donation.html" class="donate-button">Donate</a>
-        </div>
-      </section>
-
-      <main>
-        <section id="school-trips">
-          <h2>School Trips</h2>
+      <main class="main-container">
+        <section class="main">
+          <div class="main-info">
+            <img src="./img/em.jpg" alt="Emily Charity" />
+            <div class="btn-container">
+              <p class="btn-text">Do you want to give donation for a child?</p>
+              <button class="donate-button" onclick="openModal()">
+                Donate Now
+              </button>
+            </div>
+            <div class="main-about">
+              <p class="main-title">
+                A small charity set up by Emily's family and friends.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="about">
+          <h2 class="about-title">About Emily's Inspirational Charity</h2>
           <p>
             We organize exciting and educational school trips for children. Our
             goal is to provide students with opportunities to learn outside the
             classroom and explore new places.
           </p>
+      <div class="raised-info">
+  <div class="raised-info-each" data-target="10800">
+    <span class="count">£ 0</span>
+    <p>Raised for all Events</p>
+  </div>
+  <div class="raised-info-each" data-target="1100">
+    <span class="count">£ 0</span>
+    <p>Raised for last Event</p>
+  </div>
+  <div class="raised-info-each" data-target="11">
+    <span class="count">0</span>
+    <p>Event Organized</p>
+  </div>
+</div>
+          </div>
         </section>
         <section id="tea-parties">
           <h2>Tea Party Events</h2>
@@ -101,6 +125,71 @@
           >
         </div>
       </footer>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="payment-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="amount-selection" class="section">
+          <div class="btns">
+            <button class="btn" onclick="selectAmount('5')">Donate £5</button>
+            <button class="btn" onclick="selectAmount('10')">Donate £10</button>
+            <button class="btn" onclick="selectAmount('15')">Donate £15</button>
+          </div>
+
+          <label class="text"> Or enter your own amount: </label>
+          <div class="amount-entry">
+            <input type="number" id="custom-amount" class="input-amount" />
+            <button
+              id="open-modal-btn"
+              onclick="continueToDetails()"
+              class="btn-continue"
+            >
+              Continue
+            </button>
+          </div>
+
+          <p id="amount-message" class="message"></p>
+        </div>
+
+        <div id="payment-details" class="hidden payment">
+          <h2 class="title">Select Payment Method</h2>
+          <div class="buttons">
+            <button
+              class="gocardless"
+              id="gocardless"
+              onclick="setPaymentMethod('gocardless')"
+            >
+              <img src="./icons/gocardless-icon.svg" alt="GoCardless" />
+              GoCardless
+            </button>
+            <button
+              class="paypal"
+              id="paypal"
+              onclick="setPaymentMethod('paypal')"
+            >
+              <img
+                src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                alt="PayPal Logo"
+                style="border: none"
+              />
+            </button>
+          </div>
+          <form
+            id="donation-form"
+            class="hidden form"
+            onsubmit="handleSubmit(event)"
+          >
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="given-name" placeholder="Name" required />
+            <input type="text" id="family-name" placeholder="Surname" />
+            <button type="submit">Make Donation</button>
+          </form>
+          <div id="loader" class="loader hidden"></div>
+          <p id="payment-message" class="message"></p>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/main.js" defer></script>

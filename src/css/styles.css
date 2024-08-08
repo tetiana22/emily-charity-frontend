@@ -1,7 +1,5 @@
 @import url('./reset.css');
 @import url('./vite-promo.css');
-@import url('./donation.css');
-@import url('./modal.css');
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif, satisfy-regular;
@@ -48,7 +46,6 @@ ul {
 }
 
 a {
-  color: currentColor;
   text-decoration: none;
   margin: 0;
   padding: 0;
@@ -97,7 +94,6 @@ body {
   width: 100%;
 }
 /*header*/
-/* Загальні стилі для header */
 .header-container {
   display: flex;
   align-items: center;
@@ -105,8 +101,9 @@ body {
   font-family: 'Satisfy', cursive;
   font-size: 14px;
   font-weight: 800;
-  margin-bottom: 10px;
-  height: 60px;
+
+  height: 50px;
+  position: relative;
 }
 
 .name {
@@ -124,25 +121,27 @@ body {
 .logo:hover {
   color: red;
 }
+
 nav {
   margin-left: auto;
 }
+
 .nav-links {
   list-style: none;
   padding: 0;
-
   gap: 20px;
 }
+
 .nav-links-main li {
   display: inline;
-}
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-size: 18px;
-  font-weight: bold;
+  margin-left: 10px;
+  color: #0a0a0a;
+  cursor: pointer;
 }
 
+.nav-links-main li:hover {
+  color: #9fa666;
+}
 .burger-menu {
   display: none;
 }
@@ -164,12 +163,14 @@ nav {
 }
 
 .mobile-nav {
-  position: fixed;
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+  height: 300px;
+  position: absolute;
   top: 0;
   right: 0;
-  width: 250px;
-  height: 100%;
-  background: white;
+  width: 150px;
+  background: rgb(215, 209, 200);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   transition: transform 0.3s ease;
@@ -185,12 +186,26 @@ nav {
   display: block;
 }
 
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.nav-links li {
+  list-style: none;
+  margin-bottom: 10px;
 }
 
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #9fa666;
+  transform: scale(1.05);
+}
+header img:hover {
+  transform: scale(1.05);
+}
 @media (max-width: 760px) {
   .main-nav {
     display: none;
@@ -203,16 +218,17 @@ nav {
     border: none;
   }
 }
+
 @media (min-width: 761px) {
   .mobile-nav {
     display: none;
     transform: translateX(100%);
   }
+
   .overlay {
     display: none;
   }
 }
-/*main*/
 .main {
   gap: 20px;
   background-image: url('../img/floral.jpg');
@@ -220,58 +236,231 @@ nav {
   background-position: center;
   border-radius: 8px;
   animation: fadeIn 1s ease-in-out;
-  height: 300px;
+  height: auto;
+  padding: 10px 5px;
+  position: relative;
+  overflow: hidden;
 }
-.main p {
-  font-weight: 800;
-  font-size: 28px;
+
+.main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    252,
+    251,
+    251,
+    0.3
+  ); /* Напівпрозорий чорний фон для задимленого ефекту */
+  border-radius: 8px; /* Забезпечує відповідність закругленню контейнера */
+  z-index: 0; /* Розташовує псевдоелемент під основним вмістом */
+}
+.main-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Для мобільних пристроїв вирівнюємо елементи стовпцем */
+  align-items: center;
+}
+
+.main img {
+  width: 120px; /* Менший розмір для мобільних пристроїв */
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 5px; /* Відступ від тексту */
+  z-index: 1;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+.main-about {
+  z-index: 1;
   font-family: 'Satisfy', cursive;
-  text-align: center;
-  margin-bottom: 10px;
 }
+.main-title {
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center; /* Вирівнювання по центру */
+  margin-bottom: 20px;
+}
+/* .raised-info {
+  display: flex;
+  gap: 5px;
+}
+.raised-info-each {
+  background-color: #7f7f7e;
+  color: white;
+  font-weight: 800;
+  font-size: 24px;
+} */
+.btn-text {
+  display: none;
+}
+.btn-container {
+  padding: 10px;
+  position: relative;
+  width: 100%; /* Ширина займає всю доступну площу */
+  max-width: 320px; /* Максимальна ширина */
+  margin-bottom: 10px; /* Відступи зверху і знизу */
+  text-align: center; /* Вирівнювання тексту по центру */
+  z-index: 1;
+}
+
 .donate-button {
   padding: 0 10px;
   background-color: rgb(244, 32, 32);
   color: white;
   text-decoration: none;
+  border: none;
   border-radius: 5px;
   font-weight: bold;
   height: 35px;
-  line-height: 35px; /* Вирівнює текст по вертикалі */
-  text-align: center; /* Вирівнює текст по горизонталі */
+  line-height: 35px;
+  text-align: center;
   transition: background-color 0.3s;
+  cursor: pointer;
+  margin-top: 10px; /* Відступ зверху */
 }
+
 .donate-button:hover {
-  background-color: rgb(200, 0, 0); /* Темніший відтінок при наведенні */
+  background-color: rgb(200, 0, 0);
 }
-.main img {
-  width: 160px;
-  height: 160px;
-  display: block;
-  margin: 0 auto 20px;
-  object-fit: cover;
-  border-radius: 100px;
-  transition: transform 0.3s;
+
+/* Стилі для екрану з мінімальною шириною 375px */
+@media (min-width: 375px) {
+  .main img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .main-title {
+    font-size: 22px;
+  }
 }
-.main-about {
-  padding: 20px;
+
+/* Стилі для екрану з мінімальною шириною 768px */
+@media (min-width: 768px) {
+  .main {
+    height: 300px;
+    padding: 20px 30px;
+  }
+
+  .main-info {
+    flex-direction: row; /* Вирівнюємо елементи по горизонталі */
+    align-items: flex-start;
+  }
+
+  .main img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 0;
+    position: absolute;
+    left: 32%;
+    z-index: 1;
+  }
+
+  .main-title {
+    font-size: 32px;
+    text-align: start;
+    margin-left: 180px;
+    margin-top: 39px;
+  }
+
+  .btn-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    max-width: 240px;
+    position: relative;
+    top: 80px;
+    left: -32px;
+    height: 130px;
+    padding: 20px;
+    text-align: left;
+    z-index: 0;
+  }
+
+  .donate-button {
+    margin-left: 30px;
+  }
+  .btn-text {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+/*section-about*/
+.raised-info {
   display: flex;
-  flex-direction: column; /* Вміст розміщується вертикально */
-  align-items: center; /* Центрує елементи всередині контейнера */
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.raised-info-each {
   text-align: center;
 }
-header img:hover {
-  transform: scale(1.05);
+
+.count {
+  font-size: 2em;
+  font-weight: bold;
+  display: block;
+  transition: all 1s;
 }
 
-section {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Анімація для чисел */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+/* Стилі для екрану з мінімальною шириною 1440px */
+@media (min-width: 1440px) {
+  .main {
+    height: 350px;
+    padding: 30px 40px;
+  }
 
-section h2 {
-  margin-top: 0;
+  .main img {
+    width: 250px;
+    height: 250px;
+    left: 23%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .main-title {
+    font-size: 38px;
+    margin-left: 580px;
+    margin-top: 70px;
+  }
+
+  .btn-container {
+    max-width: 300px;
+    top: 190px;
+    left: 30px;
+    padding: 25px;
+    text-align: left;
+    position: absolute;
+    z-index: 0;
+  }
+  .btn-text {
+    font-size: 16px;
+  }
+  .donate-button {
+    margin-left: 75px;
+  }
+}
+/*about*/
+.about-title {
+  color: #9fa666;
+  font-size: 16px;
 }
 
 footer {
@@ -283,26 +472,272 @@ footer {
   border-radius: 8px;
 }
 
-.contact,
-.social {
-  flex: 1;
-  margin: 0 10px;
+/*modal*/
+
+.btns {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 0;
+  min-width: 115px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(244, 240, 240);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(13, 12, 12);
+  transition: background-color 0.3s, transform 0.3s;
+  padding: 3px 8px;
 }
 
-.social a {
+.btn.active {
+  background-color: red;
   color: white;
-  text-decoration: none;
+  transform: scale(1.1);
 }
 
-.social a:hover {
-  text-decoration: underline;
+.btn:hover {
+  opacity: 0.8;
+  background-color: red;
+  color: white;
+}
+.text {
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.btn-continue {
+  border-radius: 4px;
+  background-color: #007bff;
+  font-weight: 500;
+  height: 35px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.btn-continue:hover {
+  background-color: #0056b3;
+}
+.input-amount::-webkit-outer-spin-button,
+.input-amount::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-amount {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 35px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-amount:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.input-amount:hover {
+  border-color: #999;
+}
+.payment {
+  background-color: #f7fafc;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.paypal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 150px;
+  background-color: #ffc439;
+  color: #000;
+  cursor: pointer;
+}
+
+.gocardless {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  justify-content: center;
+  height: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #0070ba;
+  color: #f1f252;
+  cursor: pointer;
+}
+
+.gocardless img {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(148, 164, 186, 0.1);
+}
+
+.form label {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.form button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form button:hover {
+  background-color: #0056b3;
+}
+
+.hidden {
+  display: none;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 20% auto;
+  padding: 20px;
+  border: 4px solid #d9e2e9;
+  width: 450px;
+  position: relative;
+  backdrop-filter: blur(10px); /* Розмиття фону */
+  -webkit-backdrop-filter: blur(10px); /* Розмиття фону для Webkit-браузерів */
+  border-radius: 8px; /* Заокруглені кути */
+}
+
+.close {
+  color: #413f3f;
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.amount-entry {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 22px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
+}
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
+}
+/*link*/
+
+.complete-donation-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }

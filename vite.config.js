@@ -13,7 +13,6 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         input: {
           main: './src/index.html', // основний HTML-файл
-          donation: '/donation.html', // інший HTML-файл
         },
         output: {
           manualChunks(id) {
