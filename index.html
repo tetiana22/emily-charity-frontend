@@ -2,69 +2,321 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/emily-charity-frontend/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Emily's Charity</title>
+    <link rel="icon" type="image/svg+xml" href="/emily-charity-frontend/assets/favicon-640b68eb.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+      integrity="sha512-4xo8blKMVCiXpTaLzQSLSw3KFOVPWhm/TRtuPVc4WG6kUgjH6J03IBuG7JZPkcWMxJ5huwaBpOpnwYElP/m6wg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     
-    <script type="module" crossorigin src="/emily-charity-frontend/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/emily-charity-frontend/assets/index-10c40100.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAAA0VXHyAAAClUlEQVQ4EX2ST0jUQRTH573fn21dbWtNE5PozyUyDEEIJDp16RB1WDdFpFU75MGyUtEuDUHYHyjy0NaWuaahaSBC1CGDFSkPBRrV5qEtq1MoJMH+/f1mppmFjQ1WHwzz5r33+c6bP0DWsNbxmx7BuReJKGHA3jkdRiRpsePAoRARZ+7XXZiTqMB8fN04NQnwc0DEGxMLbhOCnkSSd1uJ1DMW1wM25zX+0esHFavnE3Dr7t3CYl8G6rs+qjwV9MlSiLwYbqarat04QkOm6WqX7mxeAbRTMRuMYlkAcggKlMs5A8uZGC63BxmLKz/vEYK+np+ccOIf66tRRbnW/rzfoVmsmVnWpIrnFZBxYTo33kVNP9oydnV/VkDB8VjyLBHkVaihd0nFVYtrWsvUtSKexPNyl9d20prXnPoZDcj0g7ru2Sy0roAqOtLf7igv3e4XQPZyzQqEvBcXs7Ca/xegFJt2uZx8NablFrnLSvhyZDk9QWlaxZse3SjVHdAIwKL/XsE/eWsTWtZpwYUJZYWZwqxIEhJF7krXS7kOn5q6spWnoINb/CGaWlumg7bHfZuTutlFQIwM+jojWdA/SDdw1IvRYdYCgENAbFqDog6CIkBsUSWfoBwUnDK0bh1xKOjt/He+1tG+aqEbXYSLX0IQGdffIrATjFsBJFgFQCr+4M57mNb0y4LgcC6sOhio71kQnAyBgE9IgAHa1cRO3lEwarAtupgITvh8TKv2HvYg0XYc21f7PhwOCyLkfQMgmZmBhZX01/mV9LwaqH//UFaw5ZDMVUQ/x4NhSm21EVB589/2OBt0eUYwjDnB+EnOhaWSuQYolRmJRBdjT7OwymcuUYn8qCxskB/mgJG2LgUae3/nwuv5fwE1ggyAq/pQLgAAAABJRU5ErkJggg=="
+    />
+    <script type="module" crossorigin src="/emily-charity-frontend/main.js"></script>
+    <link rel="stylesheet" href="/emily-charity-frontend/assets/index-40d4c215.css">
   </head>
   <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donation Manager</title>
-  <style>
-    .hidden { display: none; }
-    .btn { width: 100px; height: 55px; border: 1px solid red; background-color: white; cursor: pointer; }
-    .btn:hover, .btn:focus { background-color: red; }
-    .btns { display: flex; gap: 10px; }
-    .message { color: red; }
-  </style>
-</head>
-<body>
-  <div id="amount-selection">
-    <div class="btns">
-      <button class="btn" onclick="selectAmount('5')">Donate £5</button>
-      <button class="btn" onclick="selectAmount('10')">Donate £10</button>
-      <button class="btn" onclick="selectAmount('15')">Donate £15</button>
+    <div id="content"></div>
+    <div id="home" class="section container">
+      <header>
+        <div class="header-container">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE2UlEQVR4nO1ZW28bRRQeWlCg5aJyqyioQkVcxF28ISEhIdHnIuonauKdsZa6JeoLpZUg8gMFZ8/ZVLGIRPOAqqaKvXPsNGnERUUUmtIbIaLiFxWd2V3Hdmx3be+6W8EnjRInZ+fsd2bmzHeOhfgfvWFX4TlJeFQSnlMabigPr0mCmiTnSJamdm+yp5ndktwjbMO2/Aw/y3PwXGLUsOfm7lPkHpce3pQa/+k0lMa/FMEnxWJxCw+p8aAkWO9mz3NZBMd57pGRkOTOGecEa8qDz6WHr2Zo+oGPzpYfHid4U2mYDF9aafcrSXgisF+3NExaXukNtuVncjT9mtR4jIn7Nu7cSMiYlfAjfiFXd57vZmde0IOLGysEvzJh0QWSnBclwS9syysjEj8TvJ0I1nqRaCZjthhHuweJZjKB7U2rfnKPSArmYJvlx6ORn/HwEI+o9haBWXGp4TORFJSGJXaSr518JeozEz+Vx3hEtc/5Z4aJLIqkIDVeZyf2SnFbUj7sleI2c6YIryXlQ0gNV9kJZ5ykfNg09UiQIK4kmbHm/Wi57yflQ9Zgb+BjPsnDng0Oe4UvubjnL94qbpEe6MBHViS6fwkvBbn+g7jnVzXIBKuxeuACbhdJIk+4P4jYJfvsiafimvdjmn5aarzsBwn3i8RxS9wjCWeD253iyGAH5nE7p9sgQLPsQ4wCh2j2Qalx2Rd7UM4QbR10rgzRVuk5fmAIl3huMUrwVlAaVoPLyy3+Xrx3oMNNWArS7WWW+eJOgFWsqUH8aGI/K5PhldDgBoG4qmrwuriTsAhfVgR/BFE9FWVr2Cb7wbepIRGClW1jm3HFV3F2dbWtOLuMjS/tV6Oo4pEivzj1jCI8H94DOc95q92GI680/has3o/j1dKzIo0oLJR2SI1nwupRevBh+D/+3fxNGxJn2FakGaYU9vDLpnrcCYb5bGmYHFldHgek5+yThH82CPHvnrNP3I2wFkp7lMY6j0RL11Fgolwe4yH+a5gol8fy2j3MckWS6cKcSl2Kvh0KC6UdLEQ3N/BgjS/eviZjvcMR4eIprD0GGty8IzzNDbsofhVNPxoqYG5ycBPCXnAftzz42mQ7D76LRGD8dPF+RfCF0vD3wC/fpXXKmiwqCalhsfmOkcvOQ5FreGauNFTDHqzf5oS32YEYEKy5+M4wZDz4vicJ8iULk2j3ma+6LwSi9PxtSTRqC8Kf7br70qAv360jwl33Tv/PnvvmsV4kfKUQrhQei0ZC4zJ/FjGCz0fYJ+5EQgUNP/O1RAcSfP8Ez9e71vBJkTC1dxX2+u1Vvw/W3jLNNpHgn/y5F4muuiwuEqoyszNH+J4i/JSzCqve9sNuEUBz9Wj75zEdJLjB3CTH29PuRW4gWBoOcwpt9634oksDicYh3ZjHKFqLnHcPLuKT3Z5pIUE4OInmDMGpzKLyE2IItKbNPu4V2uy7hQThUtcAJ3Wwm6MckcSml4y8En70Gs5iT7HDoNAPibQSKfRLooMMWBn2fAyLQtQzkWYyhWFIjEqS9AJ/p26R+44i+KGv7TQMGRZ7RgFrvBKnpN+Q9lCNpR3Ui0xrbRDjIFjnrWQRqn6+5R2ITIsiZVldmdkp7gbYbWQaabqDrE49VJvUYAlhr6TjrhH9IpQaA6fDEeFfuSaHf5mP0WwAAAAASUVORK5CYII="
+            alt="logo"
+            width="32px"
+            height="32px"
+            class="logo"
+          />
+          <h1 class="name"><span>Emily's</span> Charity</h1>
+          <nav class="main-nav">
+            <ul class="nav-links-main">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </nav>
+          <button class="burger-menu" aria-label="Toggle navigation">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAf0lEQVR4nO3Y2wmAMAyF4e6lDqPtMhr3sOkAFnGKbiQO4AUsWuT/4LwnD4FDjAEAIBM39U0XJHYqqegEiW0Y68NFrMry+ZB6O+v/F2nDWFsd5gKGTGfZZ7R+qB7fEgAAwIscNV7Kar+WGi/UeAAAgAvUeKXGJ77xnm88AMBkswHM/+to5AHuiQAAAABJRU5ErkJggg=="
+              alt="Menu"
+              width="32px"
+              height="32px"
+            />
+          </button>
+          <div class="overlay hidden"></div>
+          <nav class="mobile-nav hidden">
+            <ul class="nav-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#events">Events</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main class="main-container">
+        <section id="home" class="main">
+          <div class="main-info">
+            <img src="/emily-charity-frontend/assets/em-8a56ad14.jpg" alt="Emily Charity" />
+            <div class="btn-container">
+              <p class="btn-text">Do you want to give donation for a child?</p>
+              <button class="donate-button" onclick="openModal()">
+                Donate Now
+              </button>
+            </div>
+            <div class="main-about">
+              <p class="main-title">
+                A small charity set up by Emily's family and friends.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section id="about" class="about-container">
+          <div class="about-img">
+            <img src="/emily-charity-frontend/assets/trip1-2d2f2077.jpg" alt="trip" />
+            <img src="/emily-charity-frontend/assets/trip2-58c54462.jpg" alt="trip" />
+
+            <img src="/emily-charity-frontend/assets/trip3-c0eb0baa.jpg" alt="trip" />
+          </div>
+          <div class="about-context">
+            <div class="about-information">
+              <h2 class="about-title">About Emily's Inspirational Charity</h2>
+              <!-- <p class="about-text">
+                We organize exciting and educational school trips for children.
+                Our goal is to provide students with opportunities to learn
+                outside the classroom and explore new places.
+              </p> -->
+              <p class="about-text">
+                Emily(Clayton) was a primary school teacher in Nottingham for 11
+                years. In September 2012 she was diagnosed with
+                cholangiocarcinoma (bile duct cencer) and died on 27th November
+                2012 aged 33 years. Every teacher hopes that they will make a
+                difference to the young people they are responsible for by their
+                influnce, teaching and the opportunities that they are able to
+                provide - by their inspiration. Emily was inspirational and
+                passionate about ensuring every chid she taght had all the
+                opportunities they needed and were not disadvataged(expecially
+                financially) in any way. The charity has been set up by her
+                family, friends and colleagues in order to fund opportunities
+                for such children to take part in events and activities that
+                will make a difference to their future lives and inspire them to
+                success, fulfilment, achievement and happiness.
+              </p>
+            </div>
+            <div class="raised-info">
+              <div class="raised-info-each" data-target="10800">
+                <span class="count">£0</span>
+                <p>Raised for all Events</p>
+              </div>
+              <div class="raised-info-each" data-target="1100">
+                <span class="count">£0</span>
+                <p>Raised for last Event</p>
+              </div>
+              <div class="raised-info-each" data-target="11">
+                <span class="count">0</span>
+                <p>Event Organized</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="events">
+          <div class="events-container">
+            <h2 class="about-title">Tea Party Events</h2>
+            <p class="about-text">
+              Join our tea party events to support our cause. These events are a
+              great way to bring the community together and raise funds for our
+              school trips. The Tea Party takes place every year on the first
+              Sunday of July. At our Tea Party, you can try your luck in the
+              raffle, enjoy delicious cakes and snacks, and relish the
+              delightful company. Children can also participate in a fun
+              treasure hunt!
+            </p>
+
+            <div class="events-img">
+              <div class="slider">
+                <div class="slides">
+                  <img src="/emily-charity-frontend/assets/tea1-e338ff5d.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea2-308a9393.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea3-928959ac.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea4-025c9d64.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party1-54d0c147.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party2-adde2624.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party3-ebe7e71e.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party6-848aec86.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party7-1993165c.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party8-d32c620d.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party9-76c78d11.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party10-fce0914d.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party11-e4ff5438.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party12-9cc4f11c.jpg" alt="event" />
+                  <img src="/emily-charity-frontend/assets/tea-party13-994c684d.jpg" alt="event" />
+                </div>
+                <div class="navigation">
+                  <div class="prev">&#10094;</div>
+                  <div class="next">&#10095;</div>
+                </div>
+              </div>
+              <!-- Індикатори слайдів -->
+              <div class="indicators"></div>
+            </div>
+
+            <!-- Лайтбокс -->
+            <div id="lightbox" class="lightbox">
+              <span class="close">&times;</span>
+              <img class="lightbox-content" src="" alt="Enlarged image" />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer id="contact">
+        <div class="footer-container">
+          <div class="footer-section about">
+            <h3>About Us</h3>
+            <p>
+              Emily Charity Foundation is dedicated to improving the lives of
+              those in need through education, healthcare, and social services.
+            </p>
+          </div>
+
+          <div class="footer-section contact">
+            <h3>Contact Us</h3>
+            <a
+              href="mailto:info@emilycharity.org"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg id="icon-mail" width="32" height="32" viewBox="0 0 32 32">
+                <path
+                  d="M28 5h-24c-2.209 0-4 1.792-4 4v13c0 2.209 1.791 4 4 4h24c2.209 0 4-1.791 4-4v-13c0-2.208-1.791-4-4-4zM2 10.25l6.999 5.25-6.999 5.25v-10.5zM30 22c0 1.104-0.898 2-2 2h-24c-1.103 0-2-0.896-2-2l7.832-5.875 4.368 3.277c0.533 0.398 1.166 0.6 1.8 0.6 0.633 0 1.266-0.201 1.799-0.6l4.369-3.277 7.832 5.875zM30 20.75l-7-5.25 7-5.25v10.5zM17.199 18.602c-0.349 0.262-0.763 0.4-1.199 0.4s-0.851-0.139-1.2-0.4l-12.8-9.602c0-1.103 0.897-2 2-2h24c1.102 0 2 0.897 2 2l-12.801 9.602z"
+                ></path>
+              </svg>
+              info@emilycharity.org
+            </a>
+            <a href="tel:+1234567890" class="footer-icon">
+              <svg id="icon-phone" width="19" height="32" viewBox="0 0 19 32">
+                <path
+                  d="M1.5 32h16c0.827 0 1.5-0.673 1.5-1.5v-29c0-0.827-0.673-1.5-1.5-1.5h-16c-0.827 0-1.5 0.673-1.5 1.5v29c0 0.827 0.673 1.5 1.5 1.5zM1 1.5c0-0.276 0.224-0.5 0.5-0.5h16c0.276 0 0.5 0.224 0.5 0.5v29c0 0.276-0.224 0.5-0.5 0.5h-16c-0.276 0-0.5-0.224-0.5-0.5v-29zM2.5 27h14c0.276 0 0.5-0.224 0.5-0.5v-21c0-0.276-0.224-0.5-0.5-0.5h-14c-0.276 0-0.5 0.224-0.5 0.5v21c0 0.276 0.224 0.5 0.5 0.5zM3 6h13v20h-13v-20zM9 29c0 0.552 0.448 1 1 1s1-0.448 1-1c0-0.552-0.448-1-1-1s-1 0.448-1 1zM7.5 4h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-4c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5z"
+                ></path>
+              </svg>
+              +123 456 7890
+            </a>
+          </div>
+
+          <div class="footer-section social">
+            <h3>Follow Us</h3>
+            <a
+              href="https://www.facebook.com/emilycharityfoundation"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg
+                id="icon-facebook"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+              >
+                <path
+                  d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z"
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.twitter.com/emilycharity"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg id="icon-twitter" width="32" height="32" viewBox="0 0 32 32">
+                <path
+                  d="M32 7.075a13.14 13.14 0 0 1-3.769 1.033 6.573 6.573 0 0 0 2.887-3.631 13.18 13.18 0 0 1-4.169 1.594 6.56 6.56 0 0 0-11.187 5.975A18.616 18.616 0 0 1 2.229 4.15a6.564 6.564 0 0 0 2.03 8.75 6.52 6.52 0 0 1-2.974-.822v0.083a6.558 6.558 0 0 0 5.262 6.426 6.577 6.577 0 0 1-2.965.112 6.567 6.567 0 0 0 6.134 4.558 13.173 13.173 0 0 1-8.145 2.81c-0.529 0-1.05-0.031-1.563-0.092a18.594 18.594 0 0 0 10.064 2.95c12.073 0 18.68-10.005 18.68-18.681 0-0.285-0.006-0.569-0.018-0.852a13.314 13.314 0 0 0 3.27-3.388z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Emily Charity Foundation. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
-    <label>
-      Or enter your own amount:
-      <input type="number" id="custom-amount">
-    </label>
-    <button onclick="continueToDetails()">Continue</button>
-    <p id="amount-message" class="message"></p>
-  </div>
 
-  <div id="payment-details" class="hidden">
-    <h2>Select Payment Method</h2>
-    <button class="btn" id="gocardless" onclick="setPaymentMethod('gocardless')">GoCardless</button>
-    <button class="btn" id="paypal" onclick="setPaymentMethod('paypal')">PayPal</button>
-    <form id="donation-form" class="hidden" onsubmit="handleSubmit(event)">
-      <label>
-        Email:
-        <input type="email" id="email" required>
-      </label><br>
-      <label>
-        Given Name:
-        <input type="text" id="given-name" required>
-      </label><br>
-      <label>
-        Family Name:
-        <input type="text" id="family-name">
-      </label><br>
-      <button type="submit">Make Donation</button>
-    </form>
-    <p id="payment-message" class="message"></p>
-  </div>
+    <!-- Modal HTML -->
+    <div id="payment-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="amount-selection" class="section">
+          <div class="btns">
+            <button class="btn" onclick="selectAmount('5')">Donate £5</button>
+            <button class="btn" onclick="selectAmount('10')">Donate £10</button>
+            <button class="btn" onclick="selectAmount('15')">Donate £15</button>
+          </div>
 
-  <script src="donation.js"></script>
-</body>
-</html>
+          <label class="text"> Or enter your own amount: </label>
+          <div class="amount-entry">
+            <input type="number" id="custom-amount" class="input-amount" />
+            <button
+              id="open-modal-btn"
+              onclick="continueToDetails()"
+              class="btn-continue"
+            >
+              Continue
+            </button>
+          </div>
 
+          <p id="amount-message" class="message"></p>
+        </div>
+
+        <div id="payment-details" class="hidden payment">
+          <h2 class="title">Select Payment Method</h2>
+          <div class="buttons">
+            <button
+              class="gocardless"
+              id="gocardless"
+              onclick="setPaymentMethod('gocardless')"
+            >
+              <img src="/emily-charity-frontend/assets/gocardless-icon-569ca8e0.svg" alt="GoCardless" />
+              GoCardless
+            </button>
+            <button
+              class="paypal"
+              id="paypal"
+              onclick="setPaymentMethod('paypal')"
+            >
+              <img
+                src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                alt="PayPal Logo"
+                style="border: none"
+              />
+            </button>
+          </div>
+          <form
+            id="donation-form"
+            class="hidden form"
+            onsubmit="handleSubmit(event)"
+          >
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="given-name" placeholder="Name" required />
+            <input type="text" id="family-name" placeholder="Surname" />
+            <button type="submit">Make Donation</button>
+          </form>
+          <div id="loader" class="loader hidden"></div>
+          <p id="payment-message" class="message"></p>
+        </div>
+      </div>
+    </div>
 
     
   </body>
