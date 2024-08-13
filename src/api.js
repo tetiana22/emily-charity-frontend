@@ -1,77 +1,46 @@
-// api.js
-import axios from 'axios';
-
-// Constants
 const BASE_URL = 'https://emily-charity.onrender.com';
 const TOKEN = 'Bearer sandbox_QbpEJylc3XRJ4iE8qe1axWfIGQ4k_H_bxfs3lkQt';
 
-// Function to create a PayPal order
-export const createPayPalOrder = async amount => {
+// General function for API requests
+const apiRequest = async (endpoint, method, body) => {
   try {
-    const response = await axios.post(`${BASE_URL}/create-paypal-order`, {
-      amount,
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: TOKEN,
+      },
+      body: body ? JSON.stringify(body) : undefined,
     });
-    return response.data;
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error('Error creating PayPal order:', error);
+    console.error(`Error with ${endpoint}:`, error);
     throw error;
   }
 };
 
-// Function to create a GoCardless billing request
-export const createGoCardlessBillingRequest = async (
+export const createPayPalOrder = amount =>
+  apiRequest('/create-paypal-order', 'POST', { amount });
+
+export const createGoCardlessBillingRequest = (
   email,
   givenName,
   familyName,
   amount
-) => {
-  try {
-    const response = await fetch(`${BASE_URL}/create-billing-request`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: TOKEN,
-      },
-      body: JSON.stringify({
-        email,
-        given_name: givenName,
-        family_name: familyName,
-        amount,
-      }),
-    });
+) =>
+  apiRequest('/create-billing-request', 'POST', {
+    email,
+    given_name: givenName,
+    family_name: familyName,
+    amount,
+  }).then(data => data.billing_requests.id);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.billing_requests.id;
-  } catch (error) {
-    console.error('Error creating GoCardless billing request:', error);
-    throw error;
-  }
-};
-
-// Function to create a GoCardless billing request flow
-export const createGoCardlessBillingRequestFlow = async billingRequestId => {
-  try {
-    const response = await fetch(`${BASE_URL}/create-billing-request-flow`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: TOKEN,
-      },
-      body: JSON.stringify({ billingRequestId }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data.billing_request_flows.authorisation_url;
-  } catch (error) {
-    console.error('Error creating GoCardless billing request flow:', error);
-    throw error;
-  }
-};
+export const createGoCardlessBillingRequestFlow = billingRequestId =>
+  apiRequest('/create-billing-request-flow', 'POST', { billingRequestId }).then(
+    data => data.billing_request_flows.authorisation_url
+  );

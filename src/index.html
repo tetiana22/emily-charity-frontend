@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emily's Charity</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon_io/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="./favicon_io2/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
@@ -23,7 +23,7 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./favicon_io/favicon-32x32.png"
+      href="./favicon_io2/favicon-16x16.png"
     />
   </head>
   <body>
@@ -32,7 +32,7 @@
       <header>
         <div class="header-container">
           <img
-            src="./img/logo.png"
+            src="./img/trust-50.png"
             alt="logo"
             width="32px"
             height="32px"
@@ -42,19 +42,24 @@
           <nav class="main-nav">
             <ul class="nav-links-main">
               <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
+              <li><a href="#about">About Us</a></li>
               <li><a href="#events">Events</a></li>
               <li><a href="#contact">Contact Us</a></li>
             </ul>
           </nav>
           <button class="burger-menu" aria-label="Toggle navigation">
-            <img src="./img/menu.png" alt="Menu" width="32px" height="32px" />
+            <img
+              src="./img/menu-50.png"
+              alt="Menu"
+              width="32px"
+              height="32px"
+            />
           </button>
           <div class="overlay hidden"></div>
           <nav class="mobile-nav hidden">
             <ul class="nav-links">
               <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
+              <li><a href="#about">About Us</a></li>
               <li><a href="#events">Events</a></li>
               <li><a href="#contact">Contact Us</a></li>
             </ul>
@@ -62,7 +67,7 @@
         </div>
       </header>
       <main class="main-container">
-        <section class="main">
+        <section id="home" class="main">
           <div class="main-info">
             <img src="./img/em.jpg" alt="Emily Charity" />
             <div class="btn-container">
@@ -78,51 +83,170 @@
             </div>
           </div>
         </section>
-        <section id="about">
-          <h2 class="about-title">About Emily's Inspirational Charity</h2>
-          <p>
-            We organize exciting and educational school trips for children. Our
-            goal is to provide students with opportunities to learn outside the
-            classroom and explore new places.
-          </p>
-      <div class="raised-info">
-  <div class="raised-info-each" data-target="10800">
-    <span class="count">£ 0</span>
-    <p>Raised for all Events</p>
-  </div>
-  <div class="raised-info-each" data-target="1100">
-    <span class="count">£ 0</span>
-    <p>Raised for last Event</p>
-  </div>
-  <div class="raised-info-each" data-target="11">
-    <span class="count">0</span>
-    <p>Event Organized</p>
-  </div>
-</div>
+        <section id="about" class="about-container">
+          <div class="about-img">
+            <img src="./img/trip1.jpg" alt="trip" />
+            <img src="./img/trip2.jpg" alt="trip" />
+
+            <img src="./img/trip3.jpg" alt="trip" />
+          </div>
+          <div class="about-context">
+            <div class="about-information">
+              <h2 class="about-title">About Emily's Inspirational Charity</h2>
+              <!-- <p class="about-text">
+                We organize exciting and educational school trips for children.
+                Our goal is to provide students with opportunities to learn
+                outside the classroom and explore new places.
+              </p> -->
+              <p class="about-text">
+                Emily(Clayton) was a primary school teacher in Nottingham for 11
+                years. In September 2012 she was diagnosed with
+                cholangiocarcinoma (bile duct cencer) and died on 27th November
+                2012 aged 33 years. Every teacher hopes that they will make a
+                difference to the young people they are responsible for by their
+                influnce, teaching and the opportunities that they are able to
+                provide - by their inspiration. Emily was inspirational and
+                passionate about ensuring every chid she taght had all the
+                opportunities they needed and were not disadvataged(expecially
+                financially) in any way. The charity has been set up by her
+                family, friends and colleagues in order to fund opportunities
+                for such children to take part in events and activities that
+                will make a difference to their future lives and inspire them to
+                success, fulfilment, achievement and happiness.
+              </p>
+            </div>
+            <div class="raised-info">
+              <div class="raised-info-each" data-target="10800">
+                <span class="count">£0</span>
+                <p>Raised for all Events</p>
+              </div>
+              <div class="raised-info-each" data-target="1100">
+                <span class="count">£0</span>
+                <p>Raised for last Event</p>
+              </div>
+              <div class="raised-info-each" data-target="11">
+                <span class="count">0</span>
+                <p>Event Organized</p>
+              </div>
+            </div>
           </div>
         </section>
-        <section id="tea-parties">
-          <h2>Tea Party Events</h2>
-          <p>
-            Join our tea party events to support our cause. These events are a
-            great way to bring the community together and raise funds for our
-            school trips.
-          </p>
+        <section id="events">
+          <div class="events-container">
+            <h2 class="about-title">Tea Party Events</h2>
+            <p class="about-text">
+              Join our tea party events to support our cause. These events are a
+              great way to bring the community together and raise funds for our
+              school trips. The Tea Party takes place every year on the first
+              Sunday of July. At our Tea Party, you can try your luck in the
+              raffle, enjoy delicious cakes and snacks, and relish the
+              delightful company. Children can also participate in a fun
+              treasure hunt!
+            </p>
+
+            <div class="events-img">
+              <div class="slider">
+                <div class="slides">
+                  <img src="./img/tea1.jpg" alt="event" />
+                  <img src="./img/tea2.jpg" alt="event" />
+                  <img src="./img/tea3.jpg" alt="event" />
+                  <img src="./img/tea4.jpg" alt="event" />
+                  <img src="./img/tea-party1.jpg" alt="event" />
+                  <img src="./img/tea-party2.jpg" alt="event" />
+                  <img src="./img/tea-party3.jpg" alt="event" />
+                  <img src="./img/tea-party6.jpg" alt="event" />
+                  <img src="./img/tea-party7.jpg" alt="event" />
+                  <img src="./img/tea-party8.jpg" alt="event" />
+                  <img src="./img/tea-party9.jpg" alt="event" />
+                  <img src="./img/tea-party10.jpg" alt="event" />
+                  <img src="./img/tea-party11.jpg" alt="event" />
+                  <img src="./img/tea-party12.jpg" alt="event" />
+                  <img src="./img/tea-party13.jpg" alt="event" />
+                </div>
+                <div class="navigation">
+                  <div class="prev">&#10094;</div>
+                  <div class="next">&#10095;</div>
+                </div>
+              </div>
+              <!-- Індикатори слайдів -->
+              <div class="indicators"></div>
+            </div>
+
+            <!-- Лайтбокс -->
+            <div id="lightbox" class="lightbox">
+              <span class="close">&times;</span>
+              <img class="lightbox-content" src="" alt="Enlarged image" />
+            </div>
+          </div>
         </section>
       </main>
-      <footer>
-        <div class="contact">
-          <h3>Contact Us</h3>
-          <p>Email: info@emilycharity.org</p>
-          <p>Phone: +123 456 7890</p>
+      <footer id="contact">
+        <div class="footer-container">
+          <div class="footer-section about">
+            <h3>About Us</h3>
+            <p>
+              Emily Charity Foundation is dedicated to improving the lives of
+              those in need through education, healthcare, and social services.
+            </p>
+          </div>
+
+          <div class="footer-section contact">
+            <h3>Contact Us</h3>
+            <a
+              href="mailto:info@emilycharity.org"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg id="icon-mail" width="32" height="32" viewBox="0 0 32 32">
+                <path
+                  d="M28 5h-24c-2.209 0-4 1.792-4 4v13c0 2.209 1.791 4 4 4h24c2.209 0 4-1.791 4-4v-13c0-2.208-1.791-4-4-4zM2 10.25l6.999 5.25-6.999 5.25v-10.5zM30 22c0 1.104-0.898 2-2 2h-24c-1.103 0-2-0.896-2-2l7.832-5.875 4.368 3.277c0.533 0.398 1.166 0.6 1.8 0.6 0.633 0 1.266-0.201 1.799-0.6l4.369-3.277 7.832 5.875zM30 20.75l-7-5.25 7-5.25v10.5zM17.199 18.602c-0.349 0.262-0.763 0.4-1.199 0.4s-0.851-0.139-1.2-0.4l-12.8-9.602c0-1.103 0.897-2 2-2h24c1.102 0 2 0.897 2 2l-12.801 9.602z"
+                ></path>
+              </svg>
+              info@emilycharity.org
+            </a>
+            <a href="tel:+1234567890" class="footer-icon">
+              <svg id="icon-phone" width="19" height="32" viewBox="0 0 19 32">
+                <path
+                  d="M1.5 32h16c0.827 0 1.5-0.673 1.5-1.5v-29c0-0.827-0.673-1.5-1.5-1.5h-16c-0.827 0-1.5 0.673-1.5 1.5v29c0 0.827 0.673 1.5 1.5 1.5zM1 1.5c0-0.276 0.224-0.5 0.5-0.5h16c0.276 0 0.5 0.224 0.5 0.5v29c0 0.276-0.224 0.5-0.5 0.5h-16c-0.276 0-0.5-0.224-0.5-0.5v-29zM2.5 27h14c0.276 0 0.5-0.224 0.5-0.5v-21c0-0.276-0.224-0.5-0.5-0.5h-14c-0.276 0-0.5 0.224-0.5 0.5v21c0 0.276 0.224 0.5 0.5 0.5zM3 6h13v20h-13v-20zM9 29c0 0.552 0.448 1 1 1s1-0.448 1-1c0-0.552-0.448-1-1-1s-1 0.448-1 1zM7.5 4h4c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5h-4c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5z"
+                ></path>
+              </svg>
+              +123 456 7890
+            </a>
+          </div>
+
+          <div class="footer-section social">
+            <h3>Follow Us</h3>
+            <a
+              href="https://www.facebook.com/emilycharityfoundation"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg
+                id="icon-facebook"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+              >
+                <path
+                  d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z"
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.twitter.com/emilycharity"
+              target="_blank"
+              class="footer-icon"
+            >
+              <svg id="icon-twitter" width="32" height="32" viewBox="0 0 32 32">
+                <path
+                  d="M32 7.075a13.14 13.14 0 0 1-3.769 1.033 6.573 6.573 0 0 0 2.887-3.631 13.18 13.18 0 0 1-4.169 1.594 6.56 6.56 0 0 0-11.187 5.975A18.616 18.616 0 0 1 2.229 4.15a6.564 6.564 0 0 0 2.03 8.75 6.52 6.52 0 0 1-2.974-.822v0.083a6.558 6.558 0 0 0 5.262 6.426 6.577 6.577 0 0 1-2.965.112 6.567 6.567 0 0 0 6.134 4.558 13.173 13.173 0 0 1-8.145 2.81c-0.529 0-1.05-0.031-1.563-0.092a18.594 18.594 0 0 0 10.064 2.95c12.073 0 18.68-10.005 18.68-18.681 0-0.285-0.006-0.569-0.018-0.852a13.314 13.314 0 0 0 3.27-3.388z"
+                ></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="social">
-          <h3>Follow Us</h3>
-          <a
-            href="https://www.facebook.com/emilycharityfoundation"
-            target="_blank"
-            >Facebook</a
-          >
+        <div class="footer-bottom">
+          <p>&copy; 2024 Emily Charity Foundation. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -1,3 +1,5 @@
+// main.js
+
 import {
   createPayPalOrder,
   createGoCardlessBillingRequest,
@@ -8,6 +10,7 @@ import './css/styles.css';
 let scrollPosition = 0;
 let amount = '';
 let paymentMethod = '';
+let modalContentBackup = null;
 
 export function initializeDonationPage() {
   window.selectAmount = selectAmount;
@@ -23,9 +26,7 @@ export function initializeDonationPage() {
   if (modal && closeBtn) {
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', event => {
-      if (event.target === modal) {
-        closeModal();
-      }
+      if (event.target === modal) closeModal();
     });
   } else {
     console.error('Modal or close button element not found.');
@@ -63,21 +64,17 @@ export function selectAmount(selectedAmount) {
   amount = selectedAmount;
   document.getElementById('custom-amount').value = amount;
   const buttons = document.querySelectorAll('#amount-selection .btn');
-  buttons.forEach(btn => btn.classList.remove('active'));
-  const clickedButton = Array.from(buttons).find(btn =>
-    btn.textContent.includes(`£${selectedAmount}`)
+  buttons.forEach(btn =>
+    btn.classList.toggle(
+      'active',
+      btn.textContent.includes(`£${selectedAmount}`)
+    )
   );
-  if (clickedButton) {
-    clickedButton.classList.add('active');
-  }
 }
 
 export function continueToDetails() {
   const customAmount = document.getElementById('custom-amount').value;
-  if (customAmount) {
-    amount = customAmount;
-  }
-
+  amount = customAmount || amount;
   if (amount) {
     document.getElementById('amount-selection').classList.add('hidden');
     openModal();
@@ -96,13 +93,16 @@ function handleModalEvent(event) {
   }
 }
 
-let modalContentBackup = null;
-
 export function openModal() {
   const modal = document.getElementById('payment-modal');
+  const paymentMessage = document.getElementById('payment-message');
+
   if (modal) {
     if (!modalContentBackup) {
       modalContentBackup = modal.cloneNode(true);
+    }
+    if (paymentMessage) {
+      paymentMessage.textContent = '';
     }
     scrollPosition = window.pageYOffset;
     modal.style.display = 'block';
@@ -122,15 +122,9 @@ export async function closeModal() {
     document.removeEventListener('keydown', handleModalEvent);
     window.removeEventListener('click', handleModalEvent);
 
-    const paymentButtons = {
-      paypal: document.getElementById('paypal'),
-      gocardless: document.getElementById('gocardless'),
-    };
-
-    Object.keys(paymentButtons).forEach(key => {
-      const btn = paymentButtons[key];
-      btn.classList.remove('hidden');
-      btn.classList.remove('active');
+    const paymentButtons = document.querySelectorAll('#paypal, #gocardless');
+    paymentButtons.forEach(btn => {
+      btn.classList.remove('hidden', 'active');
     });
 
     const form = document.getElementById('donation-form');
@@ -149,26 +143,19 @@ export async function closeModal() {
 
 export function setPaymentMethod(method) {
   paymentMethod = method;
-  const paymentButtons = {
-    paypal: document.getElementById('paypal'),
-    gocardless: document.getElementById('gocardless'),
-  };
+  const paymentButtons = document.querySelectorAll('#paypal, #gocardless');
+  paymentButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.id === method);
+    btn.classList.toggle('hidden', btn.id !== method);
+  });
 
   const form = document.getElementById('donation-form');
   const title = document.querySelector('#payment-details .title');
 
-  function updateButtonVisibility(selectedMethod) {
-    Object.keys(paymentButtons).forEach(key => {
-      const btn = paymentButtons[key];
-      btn.classList.toggle('active', key === selectedMethod);
-      btn.classList.toggle('hidden', key !== selectedMethod);
-    });
-  }
-
-  updateButtonVisibility(method);
   if (form) form.classList.remove('hidden');
   if (title) title.classList.add('hidden');
 }
+
 export async function handleSubmit(event) {
   event.preventDefault();
 
@@ -178,31 +165,24 @@ export async function handleSubmit(event) {
   const paymentMessage = document.getElementById('payment-message');
   const customAmountInput = document.getElementById('custom-amount').value;
 
-  // Якщо користувач ввів значення вручну, оновлюємо amount
-  if (customAmountInput) {
-    amount = customAmountInput;
-  }
+  amount = customAmountInput || amount;
 
-  // Перевірка, чи введені ім'я та email
   if (!givenName || !email) {
     paymentMessage.textContent = 'Please enter both your name and email.';
     return;
   }
 
-  // Перевірка суми пожертвування
   const donationAmount = parseFloat(amount);
   if (isNaN(donationAmount) || donationAmount <= 0) {
     paymentMessage.textContent = 'Please enter a valid amount.';
     return;
   }
 
-  // Перевірка, чи вибрано спосіб оплати
   if (!paymentMethod) {
     paymentMessage.textContent = 'Please select a payment method.';
     return;
   }
 
-  // Всі дані валідні, починаємо процес обробки платежу
   try {
     if (paymentMethod === 'paypal') {
       const response = await createPayPalOrder(donationAmount.toFixed(2));
@@ -224,7 +204,8 @@ export async function handleSubmit(event) {
       const redirectUrl = await createGoCardlessBillingRequestFlow(
         billingRequestId
       );
-      paymentMessage.innerHTML = `<div>
+      paymentMessage.innerHTML = `
+        <div>
           <p>Click the link below to complete your donation of £${donationAmount}: <br>
           <a href="${redirectUrl}" target="_blank" rel="noopener noreferrer" style="color: blue;" onclick="closeModal()">Complete Donation</a></p>
         </div>`;
@@ -235,35 +216,33 @@ export async function handleSubmit(event) {
       'Error processing donation. Please try again later.';
   }
 }
-/*counter*/
-document.addEventListener('DOMContentLoaded', function () {
+
+/* Counter */
+document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.count');
 
-  // Функція для анімації чисел
   function animateCounter(counter, target) {
     let count = 0;
-    const speed = 200; // Швидкість анімації, чим менше значення, тим швидше анімація
+    const speed = 200;
     const isCurrency = counter
       .closest('.raised-info-each')
       .querySelector('span')
       .textContent.startsWith('£');
 
-    // Оновлює значення чисел
     const interval = setInterval(() => {
-      count += Math.ceil(target / speed); // Збільшуємо значення
+      count += Math.ceil(target / speed);
       if (count >= target) {
         count = target;
-        clearInterval(interval); // Зупиняємо анімацію, коли досягнуто кінцеве значення
+        clearInterval(interval);
       }
       counter.textContent = isCurrency
         ? `£ ${count.toLocaleString()}`
-        : count.toLocaleString(); // Оновлюємо текст чисел з форматуванням
+        : count.toLocaleString();
     }, 1);
   }
 
-  // Функція для перевірки видимості елемента і запуску анімації
   function handleScroll() {
-    const scrollPosition = window.innerHeight + window.scrollY; // Позиція скролу
+    const scrollPosition = window.innerHeight + window.scrollY;
     counters.forEach(counter => {
       const rect = counter.getBoundingClientRect();
       if (
@@ -272,18 +251,143 @@ document.addEventListener('DOMContentLoaded', function () {
       ) {
         const target = parseInt(
           counter.parentElement.getAttribute('data-target')
-        ); // Отримання кінцевого значення
+        );
         animateCounter(counter, target);
-        counter.classList.add('animated'); // Додаємо клас для позначення того, що анімація вже була запущена
+        counter.classList.add('animated');
       }
     });
   }
 
-  // Додаємо подію прокручування для запуску анімації
   window.addEventListener('scroll', handleScroll);
-  handleScroll(); // Запускаємо анімацію при завантаженні сторінки
+  handleScroll();
 });
 
+/* Lightbox */
 document.addEventListener('DOMContentLoaded', () => {
-  initializeDonationPage();
+  const slides = document.querySelector('.slides');
+  const images = slides.querySelectorAll('img');
+  const prev = document.querySelector('.prev');
+  const next = document.querySelector('.next');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-content');
+  const closeLightbox = document.querySelector('.lightbox .close');
+  const indicators = document.querySelector('.indicators');
+  let currentIndex = 0;
+  let slideInterval;
+
+  images.forEach((img, index) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    dot.addEventListener('click', () => goToSlide(index));
+    indicators.appendChild(dot);
+  });
+
+  const dots = indicators.querySelectorAll('.dot');
+
+  function updateSlidePosition() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach(dot =>
+      dot.classList.toggle(
+        'active',
+        dot.classList.contains('dot') && dot === dots[currentIndex]
+      )
+    );
+  }
+
+  function goToPrevSlide() {
+    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    updateSlidePosition();
+    resetSlideShow();
+  }
+
+  function goToNextSlide() {
+    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    updateSlidePosition();
+    resetSlideShow();
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlidePosition();
+    resetSlideShow();
+  }
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightbox.style.display = 'block';
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function showNextImage() {
+    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function showPrevImage() {
+    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function startSlideShow() {
+    slideInterval = setInterval(goToNextSlide, 3000);
+  }
+
+  function resetSlideShow() {
+    clearInterval(slideInterval);
+    startSlideShow();
+  }
+
+  prev.addEventListener('click', goToPrevSlide);
+  next.addEventListener('click', goToNextSlide);
+  closeLightbox.addEventListener(
+    'click',
+    () => (lightbox.style.display = 'none')
+  );
+  window.addEventListener('click', event => {
+    if (event.target === lightbox) lightbox.style.display = 'none';
+  });
+
+  document.addEventListener('keydown', event => {
+    if (lightbox.style.display === 'block') {
+      if (event.key === 'ArrowRight') showNextImage();
+      if (event.key === 'ArrowLeft') showPrevImage();
+      if (event.key === 'Escape') lightbox.style.display = 'none';
+    } else {
+      if (event.key === 'ArrowLeft') goToPrevSlide();
+      if (event.key === 'ArrowRight') goToNextSlide();
+    }
+  });
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
+
+  startSlideShow();
 });
+
+/* Lazy Loading */
+document.addEventListener('DOMContentLoaded', () => {
+  const lazyImages = document.querySelectorAll('img.lazy');
+
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          image.src = image.dataset.src;
+          image.classList.remove('lazy');
+          imageObserver.unobserve(image);
+        }
+      });
+    });
+
+    lazyImages.forEach(image => imageObserver.observe(image));
+  } else {
+    lazyImages.forEach(image => {
+      image.src = image.dataset.src;
+      image.classList.remove('lazy');
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', initializeDonationPage);
