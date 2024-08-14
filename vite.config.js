@@ -1,30 +1,24 @@
 import { defineConfig } from 'vite';
-import injectHTML from 'vite-plugin-html-inject';
-import FullReload from 'vite-plugin-full-reload';
 
-export default defineConfig(({ command }) => {
-  return {
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
-    },
-    root: 'src',
-    build: {
-      sourcemap: true,
-      rollupOptions: {
-        input: {
-          main: './src/index.html',
-        },
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: 'main.js',
-        },
+export default defineConfig({
+  root: 'src',
+  build: {
+    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: './src/index.html',
       },
-      outDir: '../dist',
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+        entryFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name][extname]',
+      },
     },
-    plugins: [injectHTML(), FullReload(['./src/*.html'])],
-  };
+    outDir: '../dist',
+  },
 });
