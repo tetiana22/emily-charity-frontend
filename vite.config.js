@@ -12,7 +12,7 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       rollupOptions: {
         input: {
-          main: './src/index.html', // основний HTML-файл
+          main: './index.html',
         },
         output: {
           manualChunks(id) {
@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => {
               return 'vendor';
             }
           },
-          entryFileNames: '[name].js',
+          entryFileNames: 'main.js',
         },
       },
       outDir: './dist',
