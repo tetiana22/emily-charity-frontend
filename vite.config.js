@@ -23,7 +23,7 @@ export default defineConfig(({ command }) => {
           entryFileNames: '[name].js',
         },
       },
-      outDir: '../dist',
+      outDir: './dist',
     },
     plugins: [injectHTML(), FullReload(['./src/*.html'])],
   };
