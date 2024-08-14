@@ -12,7 +12,7 @@ export default defineConfig(({ command }) => {
       sourcemap: true,
       rollupOptions: {
         input: {
-          main: './index.html',
+          main: './src/index.html',
         },
         output: {
           manualChunks(id) {
@@ -23,7 +23,7 @@ export default defineConfig(({ command }) => {
           entryFileNames: 'main.js',
         },
       },
-      outDir: '../dist',
+      outDir: 'dist',
     },
     plugins: [injectHTML(), FullReload(['./src/*.html'])],
   };
