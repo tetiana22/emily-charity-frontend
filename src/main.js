@@ -11,6 +11,7 @@ let scrollPosition = 0;
 let amount = '';
 let paymentMethod = '';
 let modalContentBackup = null;
+window.openModal = openModal;
 
 export function initializeDonationPage() {
   window.selectAmount = selectAmount;
@@ -389,5 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
+console.log('initializeDonationPage called');
+console.log('openModal function:', window.openModal);
 document.addEventListener('DOMContentLoaded', initializeDonationPage);
