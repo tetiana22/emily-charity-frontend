@@ -212,7 +212,7 @@ header img:hover {
   background-image: var(--main-bg-image);
   background-size: cover;
   background-position: bottom;
-  border-radius: 8px;
+  border-radius: 9px;
   animation: fadeIn 1s ease-in-out;
   height: 320px;
   padding: 10px 5px;
