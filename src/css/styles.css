@@ -206,7 +206,7 @@ header img:hover {
   }
 }
 
-/*main-*/
+/*main*/
 .main {
   gap: 20px;
   background-image: var(--main-bg-image);
