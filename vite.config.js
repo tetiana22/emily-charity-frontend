@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => {
               return 'vendor';
             }
           },
-          entryFileNames: 'main.js',
+          entryFileNames: 'src/main.js',
         },
       },
       outDir: '../dist',
