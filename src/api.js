@@ -1,4 +1,4 @@
-const BASE_URL = 'https://emily-charity.onrender.com';
+const BASE_URL = 'https://emily-charity.onrender.com/';
 const TOKEN = 'Bearer sandbox_QbpEJylc3XRJ4iE8qe1axWfIGQ4k_H_bxfs3lkQt';
 
 // General function for API requests
