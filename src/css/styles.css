@@ -644,6 +644,32 @@ header img:hover {
 .lightbox .close:focus {
   color: #bbb;
 }
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.lightbox-prev {
+  left: 16px;
+}
+
+.lightbox-next {
+  right: 16px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 @keyframes zoomIn {
   from {
     transform: scale(0);

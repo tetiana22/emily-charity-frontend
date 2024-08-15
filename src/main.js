@@ -293,6 +293,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
   let slideInterval;
 
+  const lightboxPrev = document.createElement('div');
+  const lightboxNext = document.createElement('div');
+
+  lightboxPrev.classList.add('lightbox-prev');
+  lightboxNext.classList.add('lightbox-next');
+
+  lightboxPrev.innerHTML = '&#10094;';
+  lightboxNext.innerHTML = '&#10095;';
+
+  lightbox.appendChild(lightboxPrev);
+  lightbox.appendChild(lightboxNext);
+
   images.forEach((img, index) => {
     const dot = document.createElement('span');
     dot.classList.add('dot');
@@ -359,10 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
   next.addEventListener('touchstart', goToNextSlide);
   prev.addEventListener('click', goToPrevSlide);
   next.addEventListener('click', goToNextSlide);
-  closeLightbox.addEventListener(
-    'click',
-    () => (lightbox.style.display = 'none')
-  );
+
+  lightboxPrev.addEventListener('click', showPrevImage);
+  lightboxNext.addEventListener('click', showNextImage);
+
+  closeLightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
   window.addEventListener('click', event => {
     if (event.target === lightbox) lightbox.style.display = 'none';
   });
