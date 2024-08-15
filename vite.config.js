@@ -14,7 +14,7 @@ export default defineConfig({
             return 'vendor';
           }
         },
-        entryFileNames: 'assets/[name].js',
+        entryFileNames: 'src/main.js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name][extname]',
       },
