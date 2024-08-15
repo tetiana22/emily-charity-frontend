@@ -19,7 +19,12 @@ const apiRequest = async (endpoint, method, body) => {
 
     return await response.json();
   } catch (error) {
-    console.error('Unexpected error:', error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    } else {
+      console.error('Unexpected error:', error);
+    }
     throw error;
   }
 };
