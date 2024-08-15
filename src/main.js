@@ -210,7 +210,7 @@ export async function handleSubmit(event) {
         </div>`;
     }
   } catch (error) {
-    console.error(error.message || error);
+    console.error('Unexpected error:', error);
     paymentMessage.textContent =
       'Error processing donation. Please try again later.';
   }
