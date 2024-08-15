@@ -1,4 +1,4 @@
-const BASE_URL = 'https://emily-charity-frontend.onrender.com';
+const BASE_URL = 'https://emily-charity-frontend.onrender.com/';
 const TOKEN = 'Bearer sandbox_QbpEJylc3XRJ4iE8qe1axWfIGQ4k_H_bxfs3lkQt';
 
 // General  API requests
@@ -25,7 +25,7 @@ const apiRequest = async (endpoint, method, body) => {
 };
 
 export const createPayPalOrder = amount =>
-  apiRequest('/create-paypal-order', 'POST', { amount });
+  apiRequest('create-paypal-order', 'POST', { amount });
 
 export const createGoCardlessBillingRequest = (
   email,
@@ -33,7 +33,7 @@ export const createGoCardlessBillingRequest = (
   familyName,
   amount
 ) =>
-  apiRequest('/create-billing-request', 'POST', {
+  apiRequest('create-billing-request', 'POST', {
     email,
     given_name: givenName,
     family_name: familyName,
@@ -41,6 +41,6 @@ export const createGoCardlessBillingRequest = (
   }).then(data => data.billing_requests.id);
 
 export const createGoCardlessBillingRequestFlow = billingRequestId =>
-  apiRequest('/create-billing-request-flow', 'POST', { billingRequestId }).then(
+  apiRequest('create-billing-request-flow', 'POST', { billingRequestId }).then(
     data => data.billing_request_flows.authorisation_url
   );
