@@ -19,7 +19,7 @@ const apiRequest = async (endpoint, method, body) => {
 
     return await response.json();
   } catch (error) {
-    console.error(`Error with ${endpoint}:`, error);
+    console.error(error);
     throw error;
   }
 };
