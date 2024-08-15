@@ -127,7 +127,7 @@ nav {
   font-size: 18px;
 }
 .nav-links-main li:hover {
-  color: var(--text-color-secondary);
+  color: #63aa8bd1;
 }
 .burger-menu {
   display: none;
@@ -179,7 +179,7 @@ nav {
   transition: transform 0.3s ease, color 0.3s ease;
 }
 .nav-links li a:hover {
-  color: var(--text-color-secondary);
+  color: #63aa8bd1;
   transform: scale(1.05);
 }
 header img:hover {
@@ -403,11 +403,11 @@ header img:hover {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 60px 0 20px;
+  margin: 40px 0 20px;
 }
 .about-img img {
   width: 90px;
-  height: 90px;
+  height: 80px;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -417,8 +417,12 @@ header img:hover {
   animation: fadeInUp 1s ease-in-out 0.4s forwards;
 }
 .about-img img:nth-child(odd) {
-  transform: translateY(-40px);
+  transform: translateY(10px);
   animation: fadeInUp 1s ease-in-out 0.2s forwards;
+}
+.about-img img:nth-child(2) {
+  transform: translateY(-20%);
+  animation: fadeInDown 1s ease-in-out 0.4s forwards;
 }
 .about-img img:hover {
   transform: scale(1.1);
@@ -520,6 +524,10 @@ header img:hover {
   .about-img img:nth-child(odd) {
     transform: translateX(60px);
   }
+  .about-img img:nth-child(2) {
+    transform: translateX(20%);
+    animation: fadeInDown 1s ease-in-out 0.4s forwards;
+  }
   .raised-info {
     grid-template-columns: repeat(3, 1.1fr);
     gap: 25px;
@@ -534,7 +542,7 @@ header img:hover {
 
 /* event */
 .events-container {
-  background: white url('../img/painting.png') no-repeat left bottom,
+  background: url('../img/painting.png') no-repeat left bottom,
     url('../img/fun.png') no-repeat right bottom;
   background-size: 20%, 20%;
   height: 630px;

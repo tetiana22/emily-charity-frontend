@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateCounter(counter, target) {
     let count = 0;
-    const speed = 200;
+    const speed = 20;
     const isCurrency = counter
       .closest('.raised-info-each')
       .querySelector('span')
