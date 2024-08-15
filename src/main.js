@@ -83,63 +83,6 @@ export function continueToDetails() {
   }
 }
 
-function handleModalEvent(event) {
-  if (
-    event.key === 'Escape' ||
-    event.target.matches('.payment-modal, .payment-modal .close')
-  ) {
-    closeModal();
-  }
-}
-
-export function openModal() {
-  const modal = document.getElementById('payment-modal');
-  const paymentMessage = document.getElementById('payment-message');
-
-  if (modal) {
-    if (!modalContentBackup) {
-      modalContentBackup = modal.cloneNode(true);
-    }
-    if (paymentMessage) {
-      paymentMessage.textContent = '';
-    }
-    scrollPosition = window.pageYOffset;
-    modal.style.display = 'block';
-    document.getElementById('payment-details').classList.remove('hidden');
-    document.addEventListener('keydown', handleModalEvent);
-    window.addEventListener('click', handleModalEvent);
-  } else {
-    console.error('Modal element not found.');
-  }
-}
-
-export async function closeModal() {
-  const modal = document.getElementById('payment-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.classList.remove('no-scroll');
-    document.removeEventListener('keydown', handleModalEvent);
-    window.removeEventListener('click', handleModalEvent);
-
-    const paymentButtons = document.querySelectorAll('#paypal, #gocardless');
-    paymentButtons.forEach(btn => {
-      btn.classList.remove('hidden', 'active');
-    });
-
-    const form = document.getElementById('donation-form');
-    if (form) {
-      form.reset();
-      form.classList.add('hidden');
-    }
-
-    const title = document.querySelector('#payment-details .title');
-    if (title) title.classList.remove('hidden');
-    document.getElementById('custom-amount').value = '';
-  } else {
-    console.error('Modal element not found.');
-  }
-}
-
 export function setPaymentMethod(method) {
   paymentMethod = method;
   const paymentButtons = document.querySelectorAll('#paypal, #gocardless');
@@ -215,14 +158,90 @@ export async function handleSubmit(event) {
       'Error processing donation. Please try again later.';
   }
 }
+function handleModalEvent(event) {
+  if (
+    event.key === 'Escape' ||
+    event.target.matches('.payment-modal, .payment-modal .close')
+  ) {
+    closeModal();
+  }
+}
 
+export function openModal() {
+  const modal = document.getElementById('payment-modal');
+  const paymentMessage = document.getElementById('payment-message');
+
+  if (modal) {
+    if (!modalContentBackup) {
+      modalContentBackup = modal.cloneNode(true);
+    }
+    if (paymentMessage) {
+      paymentMessage.textContent = '';
+    }
+    scrollPosition = window.pageYOffset;
+    modal.style.display = 'block';
+    document.getElementById('payment-details').classList.remove('hidden');
+    document.addEventListener('keydown', handleModalEvent);
+    window.addEventListener('click', handleModalEvent);
+  } else {
+    console.error('Modal element not found.');
+  }
+}
+
+export async function closeModal() {
+  const modal = document.getElementById('payment-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+    document.removeEventListener('keydown', handleModalEvent);
+    window.removeEventListener('click', handleModalEvent);
+
+    const paymentButtons = document.querySelectorAll('#paypal, #gocardless');
+    paymentButtons.forEach(btn => {
+      btn.classList.remove('hidden', 'active');
+    });
+
+    const form = document.getElementById('donation-form');
+    if (form) {
+      form.reset();
+      form.classList.add('hidden');
+    }
+
+    const title = document.querySelector('#payment-details .title');
+    if (title) title.classList.remove('hidden');
+
+    const amountSelection = document.getElementById('amount-selection');
+    if (amountSelection) amountSelection.classList.remove('hidden'); // Показуємо знову вибір суми
+
+    const paymentMessage = document.getElementById('payment-message');
+    if (paymentMessage) paymentMessage.textContent = '';
+
+    document.getElementById('custom-amount').value = '';
+  } else {
+    console.error('Modal element not found.');
+  }
+}
+
+/*about-img*/
+document.querySelectorAll('.about-img img').forEach(img => {
+  img.addEventListener('click', function () {
+    const fullscreenImg = document.createElement('img');
+    fullscreenImg.src = this.src;
+    fullscreenImg.classList.add('fullscreen-img');
+    document.body.appendChild(fullscreenImg);
+
+    fullscreenImg.addEventListener('click', function () {
+      document.body.removeChild(fullscreenImg);
+    });
+  });
+});
 /* Counter */
 document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.count');
 
   function animateCounter(counter, target) {
     let count = 0;
-    const speed = 20;
+    const speed = 400;
     const isCurrency = counter
       .closest('.raised-info-each')
       .querySelector('span')
@@ -336,6 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startSlideShow();
   }
 
+  prev.addEventListener('touchstart', goToPrevSlide);
+  next.addEventListener('touchstart', goToNextSlide);
   prev.addEventListener('click', goToPrevSlide);
   next.addEventListener('click', goToNextSlide);
   closeLightbox.addEventListener(

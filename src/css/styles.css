@@ -412,6 +412,7 @@ header img:hover {
   border-radius: 8px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0.8;
+  cursor: pointer;
 }
 .about-img img:nth-child(even) {
   animation: fadeInUp 1s ease-in-out 0.4s forwards;
@@ -424,18 +425,24 @@ header img:hover {
   transform: translateY(-20%);
   animation: fadeInDown 1s ease-in-out 0.4s forwards;
 }
-.about-img img:hover {
-  transform: scale(1.1);
-  opacity: 1;
+
+.fullscreen-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  cursor: zoom-out;
 }
 @keyframes fadeInUp {
   from {
     transform: translateY(40px);
-    opacity: 0;
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 @media (min-width: 768px) {
@@ -520,6 +527,7 @@ header img:hover {
     width: 200px;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease-in-out;
+    cursor: pointer;
   }
   .about-img img:nth-child(odd) {
     transform: translateX(60px);
@@ -528,6 +536,7 @@ header img:hover {
     transform: translateX(20%);
     animation: fadeInDown 1s ease-in-out 0.4s forwards;
   }
+
   .raised-info {
     grid-template-columns: repeat(3, 1.1fr);
     gap: 25px;
