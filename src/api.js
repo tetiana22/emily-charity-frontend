@@ -1,4 +1,4 @@
-const BASE_URL = 'https://emily-charity-frontend.onrender.com/api/payments';
+const BASE_URL = 'https://emily-charity-frontend.onrender.com';
 const TOKEN = 'Bearer sandbox_QbpEJylc3XRJ4iE8qe1axWfIGQ4k_H_bxfs3lkQt';
 
 // General  API requests
@@ -19,12 +19,7 @@ const apiRequest = async (endpoint, method, body) => {
 
     return await response.json();
   } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
-    } else {
-      console.error('Unexpected error:', error);
-    }
+    console.error(`Error with ${endpoint}:`, error);
     throw error;
   }
 };
