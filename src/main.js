@@ -235,6 +235,22 @@ document.querySelectorAll('.about-img img').forEach(img => {
     });
   });
 });
+/*about-text*/
+document.addEventListener('DOMContentLoaded', () => {
+  const aboutText = document.querySelector('.about-text');
+  const readMoreBtn = document.querySelector('.read-more');
+
+  readMoreBtn.addEventListener('click', e => {
+    e.preventDefault();
+    if (aboutText.style.maxHeight === 'none') {
+      aboutText.style.maxHeight = '4.5em';
+      readMoreBtn.textContent = 'Read More';
+    } else {
+      aboutText.style.maxHeight = 'none';
+      readMoreBtn.textContent = 'Read Less';
+    }
+  });
+});
 /* Counter */
 document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.count');

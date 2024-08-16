@@ -346,6 +346,7 @@ header img:hover {
 /*section-about*/
 .about-container {
   margin-bottom: 20px;
+  position: relative;
 }
 .about-context {
   display: flex;
@@ -374,7 +375,28 @@ header img:hover {
 }
 .about-text {
   text-align: justify;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.5em;
+  max-height: 4.5em;
+}
+.read-more {
+  display: inline-block;
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.3s;
+}
+.read-more:hover {
+  color: #0056b3;
+  transform: scale(1.05);
+}
+.read-more:focus {
+  outline: none;
 }
 .raised-info {
   display: grid;
@@ -447,7 +469,7 @@ header img:hover {
 }
 @media (min-width: 768px) {
   .count {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
   }
   .about-context {
     padding: 40px 60px;
@@ -470,7 +492,11 @@ header img:hover {
     margin-top: 60px;
   }
   .raised-info {
-    gap: 20px;
+    grid-template-columns: repeat(3, 1.1fr);
+    gap: 25px;
+  }
+  .raised-info-each {
+    padding: 40px 20px;
   }
 }
 @media (min-width: 1440px) {
@@ -537,13 +563,6 @@ header img:hover {
     animation: fadeInDown 1s ease-in-out 0.4s forwards;
   }
 
-  .raised-info {
-    grid-template-columns: repeat(3, 1.1fr);
-    gap: 25px;
-  }
-  .raised-info-each {
-    padding: 40px 20px;
-  }
   .count {
     font-size: 28px;
   }
@@ -578,6 +597,10 @@ header img:hover {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
+}
+.event-text {
+  text-align: justify;
+  margin-bottom: 20px;
 }
 .slides {
   display: flex;
