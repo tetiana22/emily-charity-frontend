@@ -100,7 +100,7 @@ img {
   position: relative;
 }
 .name {
-  color: var(--text-color-secondary);
+  color: #63aa8bd1;
 }
 .name span {
   color: rgb(244, 32, 32);
@@ -398,6 +398,14 @@ header img:hover {
 .read-more:focus {
   outline: none;
 }
+.read-less {
+  display: inline-block;
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.3s;
+}
 .raised-info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -427,23 +435,45 @@ header img:hover {
   gap: 10px;
   margin: 40px 0 20px;
 }
+.about-img-item {
+  background-color: #f8f0e5;
+  width: 289px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
 .about-img img {
-  width: 90px;
+  width: 100px;
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0.8;
   cursor: pointer;
+  margin-bottom: 5px; /* Відступ між зображенням і описом */
 }
-.about-img img:nth-child(even) {
+
+.img-description {
+  text-align: center;
+  font-size: 12px;
+  color: #333;
+  padding: 5px;
+  border-radius: 0 0 8px 8px;
+}
+.about-img-item:nth-child(even) {
   animation: fadeInUp 1s ease-in-out 0.4s forwards;
 }
-.about-img img:nth-child(odd) {
+.about-img-item:nth-child(odd) {
   transform: translateY(10px);
   animation: fadeInUp 1s ease-in-out 0.2s forwards;
 }
-.about-img img:nth-child(2) {
+.about-img-item:nth-child(2n) {
   transform: translateY(-20%);
   animation: fadeInDown 1s ease-in-out 0.4s forwards;
 }
@@ -573,8 +603,8 @@ header img:hover {
   background: url('../img/painting.png') no-repeat left bottom,
     url('../img/fun.png') no-repeat right bottom;
   background-size: 20%, 20%;
-  height: 630px;
   padding: 40px;
+  max-height: 570px;
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
@@ -703,9 +733,14 @@ header img:hover {
     transform: scale(1);
   }
 }
+
 @media (min-width: 375px) {
   .events-container {
     height: 568px;
+  }
+  .events-img {
+    max-width: 220px;
+    max-height: 320px;
   }
 }
 @media (min-width: 768px) {

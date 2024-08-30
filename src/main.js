@@ -240,17 +240,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutText = document.querySelector('.about-text');
   const readMoreBtn = document.querySelector('.read-more');
 
+  const showLessBtn = document.createElement('a');
+  showLessBtn.href = '#';
+  showLessBtn.className = 'read-less';
+  showLessBtn.textContent = 'Read Less';
+  showLessBtn.style.display = 'none';
+  readMoreBtn.parentNode.insertBefore(showLessBtn, readMoreBtn.nextSibling);
+
   readMoreBtn.addEventListener('click', e => {
     e.preventDefault();
-    if (aboutText.style.maxHeight === 'none') {
-      aboutText.style.maxHeight = '4.5em';
-      readMoreBtn.textContent = 'Read More';
-    } else {
-      aboutText.style.maxHeight = 'none';
-      readMoreBtn.textContent = 'Read Less';
-    }
+    aboutText.style.maxHeight = 'none';
+    aboutText.style.display = 'block';
+    readMoreBtn.style.display = 'none';
+    showLessBtn.style.display = 'inline';
+  });
+
+  showLessBtn.addEventListener('click', e => {
+    e.preventDefault();
+    aboutText.style.maxHeight = '100px';
+    readMoreBtn.style.display = 'inline';
+    showLessBtn.style.display = 'none';
   });
 });
+
 /* Counter */
 document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.count');
