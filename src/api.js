@@ -45,3 +45,13 @@ export const createGoCardlessBillingRequestFlow = billingRequestId =>
   apiRequest('/create-billing-request-flow', 'POST', { billingRequestId }).then(
     data => data.billing_request_flows.authorisation_url
   );
+const pingServer = async () => {
+  try {
+    await fetch(`${BASE_URL}/ping`);
+  } catch (error) {
+    console.error('Error pinging server:', error);
+  }
+};
+
+// Пінг серверу кожні 10 хвилин
+setInterval(pingServer, 600000);
