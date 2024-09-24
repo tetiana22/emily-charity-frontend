@@ -98,9 +98,70 @@ export function setPaymentMethod(method) {
   if (title) title.classList.add('hidden');
 }
 
+// export async function handleSubmit(event) {
+//   event.preventDefault();
+
+//   const email = document.getElementById('email').value;
+//   const givenName = document.getElementById('given-name').value;
+//   const familyName = document.getElementById('family-name').value;
+//   const paymentMessage = document.getElementById('payment-message');
+//   const customAmountInput = document.getElementById('custom-amount').value;
+
+//   amount = customAmountInput || amount;
+
+//   if (!givenName || !email) {
+//     paymentMessage.textContent = 'Please enter both your name and email.';
+//     return;
+//   }
+
+//   const donationAmount = parseFloat(amount);
+//   if (isNaN(donationAmount) || donationAmount <= 0) {
+//     paymentMessage.textContent = 'Please enter a valid amount.';
+//     return;
+//   }
+
+//   if (!paymentMethod) {
+//     paymentMessage.textContent = 'Please select a payment method.';
+//     return;
+//   }
+
+//   try {
+//     if (paymentMethod === 'paypal') {
+//       const response = await createPayPalOrder(donationAmount.toFixed(2));
+//       const approvalLink = response.links?.find(
+//         link => link.rel === 'approve'
+//       )?.href;
+//       if (approvalLink) {
+//         window.location.href = approvalLink;
+//       } else {
+//         throw new Error('Approval link not found in PayPal response.');
+//       }
+//     } else if (paymentMethod === 'gocardless') {
+//       const billingRequestId = await createGoCardlessBillingRequest(
+//         email,
+//         givenName,
+//         familyName,
+//         donationAmount
+//       );
+//       const redirectUrl = await createGoCardlessBillingRequestFlow(
+//         billingRequestId
+//       );
+//       paymentMessage.innerHTML = `
+//         <div>
+//           <p>Click the link below to complete your donation of £${donationAmount}: <br>
+//           <a href="${redirectUrl}" target="_blank" rel="noopener noreferrer" style="color: blue;" onclick="closeModal()">Complete Donation</a></p>
+//         </div>`;
+//     }
+//   } catch (error) {
+//     console.error('Error:', error.message || error);
+//     paymentMessage.textContent =
+//       'Error processing donation. Please try again later.';
+//   }
+// }
 export async function handleSubmit(event) {
   event.preventDefault();
 
+  const loader = document.getElementById('loader');
   const email = document.getElementById('email').value;
   const givenName = document.getElementById('given-name').value;
   const familyName = document.getElementById('family-name').value;
@@ -109,19 +170,26 @@ export async function handleSubmit(event) {
 
   amount = customAmountInput || amount;
 
+  // Показуємо лоадер перед початком обробки
+  loader.classList.remove('hidden');
+  paymentMessage.textContent = '';
+
   if (!givenName || !email) {
     paymentMessage.textContent = 'Please enter both your name and email.';
+    loader.classList.add('hidden'); // Приховуємо лоадер
     return;
   }
 
   const donationAmount = parseFloat(amount);
   if (isNaN(donationAmount) || donationAmount <= 0) {
     paymentMessage.textContent = 'Please enter a valid amount.';
+    loader.classList.add('hidden'); // Приховуємо лоадер
     return;
   }
 
   if (!paymentMethod) {
     paymentMessage.textContent = 'Please select a payment method.';
+    loader.classList.add('hidden'); // Приховуємо лоадер
     return;
   }
 
@@ -156,6 +224,9 @@ export async function handleSubmit(event) {
     console.error('Error:', error.message || error);
     paymentMessage.textContent =
       'Error processing donation. Please try again later.';
+  } finally {
+    // Приховуємо лоадер після завершення обробки
+    loader.classList.add('hidden');
   }
 }
 function handleModalEvent(event) {
@@ -453,6 +524,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-console.log('initializeDonationPage called');
-console.log('openModal function:', window.openModal);
+
 document.addEventListener('DOMContentLoaded', initializeDonationPage);
