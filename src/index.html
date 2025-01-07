@@ -31,14 +31,18 @@
     <div id="home" class="section container">
       <header>
         <div class="header-container">
-          <img
-            src="./img/trust-50.png"
-            alt="logo"
-            width="32px"
-            height="32px"
-            class="logo"
-          />
-          <h1 class="name"><span>Emily's</span> Charity</h1>
+          <h1 class="name">
+            Em
+            <span>
+              <img
+                src="./img/icons8-charity-50.png"
+                alt="logo"
+                width="22px"
+                height="22px"
+                class="logo"
+            /></span>
+            Care
+          </h1>
           <nav class="main-nav">
             <ul class="nav-links-main">
               <li><a href="#home">Home</a></li>
@@ -48,12 +52,7 @@
             </ul>
           </nav>
           <button class="burger-menu" aria-label="Toggle navigation">
-            <img
-              src="./img/menu-50.png"
-              alt="Menu"
-              width="32px"
-              height="32px"
-            />
+            <img src="./img/burg.png" alt="Menu" width="32px" height="32px" />
           </button>
           <div class="overlay hidden"></div>
           <nav class="mobile-nav hidden">
@@ -69,44 +68,97 @@
       <main class="main-container">
         <section id="home" class="main">
           <div class="main-info">
-            <img src="./img/em.jpg" alt="Emily Charity" />
-            <div class="btn-container">
-              <p class="btn-text">Do you want to give donation for a child?</p>
-              <button class="donate-button" onclick="openModal()">
-                Donate Now
-              </button>
-            </div>
             <div class="main-about">
               <p class="main-title">
                 A small charity set up by Emily's family and friends.
               </p>
+              <div class="btn-container">
+                <p class="btn-text">
+                  Do you want to give donation for a child?
+                </p>
+                <button class="donate-button" onclick="openModal()">
+                  Donate
+                </button>
+              </div>
             </div>
+            <img src="./img/em.jpg" alt="Emily Charity" />
           </div>
         </section>
         <section id="about" class="about-container">
-          <div class="about-img">
-            <div
-              class="about-img-item"
-              data-description="Description for image 1"
-            >
-              <img src="./img/trip1.jpg" alt="trip" />
-              <div class="img-description">Description for image 1</div>
-            </div>
-            <div
-              class="about-img-item"
-              data-description="Description for image 2"
-            >
-              <img src="./img/trip2.jpg" alt="trip" />
-              <div class="img-description">Description for image 2</div>
-            </div>
+          <div class="raised-info">
+            <div class="raised-info-block">
+              <div class="raised-icon">
+                <img
+                  src="./img/moneydonation-50.png"
+                  alt="logo"
+                  width="42px"
+                  height="42px"
+                />
+              </div>
 
-            <div
-              class="about-img-item"
-              data-description="Description for image 3"
-            >
-              <img src="./img/trip3.jpg" alt="trip" />
-              <div class="img-description">Description for image 3</div>
+              <div class="raised-info-each" data-target="10800">
+                <span class="count">£0</span>
+                <p class="count-text">Donation Received</p>
+              </div>
             </div>
+            <div class="raised-info-block">
+              <div class="raised-icon">
+                <img
+                  src="./img/whitehouse.png"
+                  alt="logo"
+                  width="42px"
+                  height="42px"
+                />
+              </div>
+              <div class="raised-info-each" data-target="1100">
+                <span class="count">£0</span>
+                <p class="count-text">Last Event Funds</p>
+              </div>
+            </div>
+            <div class="raised-info-block">
+              <div class="raised-icon">
+                <img
+                  src="./img/whitelove-potion-50.png"
+                  alt="logo"
+                  width="42px"
+                  height="42px"
+                />
+              </div>
+              <div class="raised-info-each" data-target="11">
+                <span class="count">0</span>
+                <p class="count-text">Events Done</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-img">
+            <div class="about-context-img">
+              <h2 class="about-img-text">Support Children</h2>
+              <p class="about-img-descr">
+                Empowering children in Nottingham with the support they need to
+                thrive.
+              </p>
+              <div class="about-pictures">
+                <div>
+                  <img src="./img/trip1.jpg" alt="trip" />
+                </div>
+                <div>
+                  <img src="./img/trip2.jpg" alt="trip" />
+                </div>
+              </div>
+            </div>
+            <div class="last-picture">
+              <div>
+                <img src="./img/trip3.jpg" alt="trip" />
+              </div>
+            </div>
+            <img
+              src="./img/childrens.png"
+              alt="logo"
+              width="42px"
+              height="42px"
+              class="img-main"
+            />
           </div>
 
           <div class="about-context">
@@ -130,20 +182,6 @@
                 success, fulfillment, achievement, and happiness.
               </p>
               <a href="#" class="read-more">Read More</a>
-            </div>
-            <div class="raised-info">
-              <div class="raised-info-each" data-target="10800">
-                <span class="count">£0</span>
-                <p>Raised for all Events</p>
-              </div>
-              <div class="raised-info-each" data-target="1100">
-                <span class="count">£0</span>
-                <p>Raised for last Event</p>
-              </div>
-              <div class="raised-info-each" data-target="11">
-                <span class="count">0</span>
-                <p>Event Organized</p>
-              </div>
             </div>
           </div>
         </section>
