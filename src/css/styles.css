@@ -770,7 +770,7 @@ header img:hover {
   .events {
     display: flex;
     flex-direction: row;
-    height: 600px;
+    height: 500px;
   }
 
   .events-bgr {
@@ -864,16 +864,36 @@ header img:hover {
 .team-title {
   margin: 10px 0 20px;
 }
-
+.name-member {
+  padding-top: 5px;
+  font-size: 14px;
+  line-height: 1.1em;
+  font-weight: 600;
+}
+.role {
+  font-size: 10px;
+  padding-left: 10px;
+  line-height: 1.1em;
+}
+.circles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
 .yellow-circle {
   width: 70px;
   height: 70px;
-  background-color: yellow;
+  background-color: #ffda00;
   border-radius: 50%; /* Це створює коло */
-
   position: relative; /* Потрібно для розташування зображення всередині */
 }
-
+.green-circle {
+  width: 70px;
+  height: 70px;
+  background-color: #1a4f21;
+  border-radius: 50%; /* Це створює коло */
+  position: relative; /* Потрібно для розташування зображення всередині */
+}
 .image-overlay {
   width: 70px; /* Встановлюємо ширину зображення такою ж, як у кола */
   height: 80px; /* Встановлюємо висоту зображення такою ж, як у кола */
@@ -884,9 +904,33 @@ header img:hover {
   left: 0; /* Вирівнює зображення по лівому краю кола */
 }
 
+@media (min-width: 768px) {
+  .yellow-circle {
+    width: 100px;
+    height: 100px;
+  }
+  .green-circle {
+    width: 100px;
+    height: 100px;
+  }
+  .image-overlay {
+    width: 100px; /* Встановлюємо ширину зображення такою ж, як у кола */
+    height: 120px; /* Встановлюємо висоту зображення такою ж, як у кола */
+    top: -25%; /* Зміщує зображення на 30% вверх над колом */
+  }
+  .circles {
+    gap: 100px;
+  }
+  .name-member {
+    font-size: 16px;
+  }
+  .role {
+    font-size: 12px;
+  }
+}
 /* footer */
 footer {
-  background: linear-gradient(135deg, #63aa8bd1, #1c1c1c);
+  background: #1a4f21;
   color: white;
   padding: 40px 20px;
   font-family: Arial, sans-serif;
@@ -933,7 +977,7 @@ footer {
   transition: fill 0.3s;
 }
 .footer-icon:hover {
-  color: #4a90e2;
+  color: #ffda00;
   transform: translateY(-3px);
 }
 .footer-icon:hover svg {
