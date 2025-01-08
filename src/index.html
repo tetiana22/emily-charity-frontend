@@ -69,9 +69,9 @@
         <section id="home" class="main">
           <div class="main-info">
             <div class="main-about">
-              <p class="main-title">
+              <h2 class="main-title">
                 A small charity set up by Emily's family and friends.
-              </p>
+              </h2>
               <div class="btn-container">
                 <p class="btn-text">
                   Do you want to give donation for a child?
@@ -139,10 +139,10 @@
                 thrive.
               </p>
               <div class="about-pictures">
-                <div>
+                <div class="img-first">
                   <img src="./img/trip1.jpg" alt="trip" />
                 </div>
-                <div>
+                <div class="img-second">
                   <img src="./img/trip2.jpg" alt="trip" />
                 </div>
               </div>
@@ -152,54 +152,43 @@
                 <img src="./img/trip3.jpg" alt="trip" />
               </div>
             </div>
-            <img
-              src="./img/childrens.png"
-              alt="logo"
-              width="42px"
-              height="42px"
-              class="img-main"
-            />
-          </div>
-
-          <div class="about-context">
-            <div class="about-information">
-              <h2 class="about-title">About Emily's Inspirational Charity</h2>
-
-              <p class="about-text">
-                Emily(Clayton) was a primary school teacher in Nottingham for 11
-                years. In September 2012 she was diagnosed with
-                cholangiocarcinoma (bile duct cancer) and died on 27th November
-                2012 aged 33 years. Every teacher hopes that they will make a
-                difference to the young people they are responsible for by their
-                influence, teaching, and the opportunities that they are able to
-                provide - by their inspiration. Emily was inspirational and
-                passionate about ensuring every child she taught had all the
-                opportunities they needed and were not disadvantaged (especially
-                financially) in any way. The charity has been set up by her
-                family, friends, and colleagues in order to fund opportunities
-                for such children to take part in events and activities that
-                will make a difference in their future lives and inspire them to
-                success, fulfillment, achievement, and happiness.
-              </p>
-              <a href="#" class="read-more">Read More</a>
+            <div class="img-main">
+              <img
+                src="./img/childrens.png"
+                alt="logo"
+                width="42px"
+                height="42px"
+              />
             </div>
           </div>
-        </section>
-        <section id="events">
-          <div class="events-container">
-            <h2 class="about-title">Tea Party Events</h2>
-            <p class="event-text">
-              Join our tea party events to support our cause. These events are a
-              great way to bring the community together and raise funds for our
-              school trips. The Tea Party takes place every year on the first
-              Sunday of July. At our Tea Party, you can try your luck in the
-              raffle, enjoy delicious cakes and snacks, and relish the
-              delightful company. Children can also participate in a fun
-              treasure hunt!
-            </p>
 
+          <div class="about-information">
+            <div class="horizontal-line"></div>
+            <h2 class="about-title">About Emily's Inspirational Charity</h2>
+
+            <p class="about-text">
+              Emily(Clayton) was a primary school teacher in Nottingham for 11
+              years. In September 2012 she was diagnosed with cholangiocarcinoma
+              (bile duct cancer) and died on 27th November 2012 aged 33 years.
+              Every teacher hopes that they will make a difference to the young
+              people they are responsible for by their influence, teaching, and
+              the opportunities that they are able to provide - by their
+              inspiration. Emily was inspirational and passionate about ensuring
+              every child she taught had all the opportunities they needed and
+              were not disadvantaged (especially financially) in any way. The
+              charity has been set up by her family, friends, and colleagues in
+              order to fund opportunities for such children to take part in
+              events and activities that will make a difference in their future
+              lives and inspire them to success, fulfillment, achievement, and
+              happiness.
+            </p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </section>
+        <section id="events" class="events">
+          <div class="events-bgr">
             <div class="events-img">
-              <div class="slider">
+              <div class="slider-container">
                 <div class="slides">
                   <img src="./img/tea1.jpg" alt="event" />
                   <img src="./img/tea2.jpg" alt="event" />
@@ -217,19 +206,57 @@
                   <img src="./img/tea-party12.jpg" alt="event" />
                   <img src="./img/tea-party13.jpg" alt="event" />
                 </div>
-                <div class="navigation">
-                  <div class="prev">&#10094;</div>
-                  <div class="next">&#10095;</div>
+
+                <div id="lightbox" class="lightbox">
+                  <div class="lightbox-content">
+                    <img src="" alt="lightbox image" />
+                    <span class="close">&times;</span>
+                  </div>
+                  <span class="lightbox-prev">&#10094;</span>
+                  <span class="lightbox-next">&#10095;</span>
                 </div>
               </div>
-              <!-- Індикатори слайдів -->
-              <div class="indicators"></div>
             </div>
+          </div>
 
+          <div class="events-container">
+            <div class="horizontal-line"></div>
+            <h2 class="about-title">Tea Party Events</h2>
+
+            <p class="event-text">
+              Join our tea party events to support our cause. These events are a
+              great way to bring the community together and raise funds for our
+              school trips. The Tea Party takes place every year on the first
+              Sunday of July. At our Tea Party, you can try your luck in the
+              raffle, enjoy delicious cakes and snacks, and relish the
+              delightful company. Children can also participate in a fun
+              treasure hunt!
+            </p>
+            <div class="event-tea-icon">
+              <img
+                src="./img/tea-64.png"
+                alt="logo"
+                width="42px"
+                height="42px"
+              />
+            </div>
             <!-- Лайтбокс -->
             <div id="lightbox" class="lightbox">
               <span class="close">&times;</span>
               <img class="lightbox-content" src="" alt="Enlarged image" />
+            </div>
+          </div>
+        </section>
+        <section id="team" class="team">
+          <div class="team-container">
+            <div class="horizontal-line"></div>
+            <h2 class="team-title">Our Team</h2>
+            <div class="yellow-circle">
+              <img
+                src="./img/IMG_5560-removebg-preview.png"
+                alt="Image"
+                class="image-overlay"
+              />
             </div>
           </div>
         </section>

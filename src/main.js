@@ -294,18 +294,19 @@ export async function closeModal() {
 }
 
 /*about-img*/
-document.querySelectorAll('.about-img img').forEach(img => {
-  img.addEventListener('click', function () {
-    const fullscreenImg = document.createElement('img');
-    fullscreenImg.src = this.src;
-    fullscreenImg.classList.add('fullscreen-img');
-    document.body.appendChild(fullscreenImg);
+// document.querySelectorAll('.about-img img').forEach(img => {
+//   img.addEventListener('click', function () {
+//     const fullscreenImg = document.createElement('img');
+//     fullscreenImg.src = this.src;
+//     fullscreenImg.classList.add('fullscreen-img');
+//     document.body.appendChild(fullscreenImg);
 
-    fullscreenImg.addEventListener('click', function () {
-      document.body.removeChild(fullscreenImg);
-    });
-  });
-});
+//     fullscreenImg.addEventListener('click', function () {
+//       document.body.removeChild(fullscreenImg);
+//     });
+//   });
+// });
+
 /*about-text*/
 document.addEventListener('DOMContentLoaded', () => {
   const aboutText = document.querySelector('.about-text');
@@ -381,65 +382,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Lightbox */
 document.addEventListener('DOMContentLoaded', () => {
+  // Слайдер
   const slides = document.querySelector('.slides');
   const images = slides.querySelectorAll('img');
-  const prev = document.querySelector('.prev');
-  const next = document.querySelector('.next');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.querySelector('.lightbox-content');
-  const closeLightbox = document.querySelector('.lightbox .close');
-  const indicators = document.querySelector('.indicators');
   let currentIndex = 0;
-  let slideInterval;
-
-  const lightboxPrev = document.createElement('div');
-  const lightboxNext = document.createElement('div');
-
-  lightboxPrev.classList.add('lightbox-prev');
-  lightboxNext.classList.add('lightbox-next');
-
-  lightboxPrev.innerHTML = '&#10094;';
-  lightboxNext.innerHTML = '&#10095;';
-
-  lightbox.appendChild(lightboxPrev);
-  lightbox.appendChild(lightboxNext);
-
-  images.forEach((img, index) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    dot.addEventListener('click', () => goToSlide(index));
-    indicators.appendChild(dot);
-  });
-
-  const dots = indicators.querySelectorAll('.dot');
+  const visibleImages = 3;
+  const autoScrollInterval = 1000;
+  let autoScroll;
 
   function updateSlidePosition() {
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dots.forEach(dot =>
-      dot.classList.toggle(
-        'active',
-        dot.classList.contains('dot') && dot === dots[currentIndex]
-      )
-    );
+    const offset = (100 / visibleImages) * currentIndex;
+    slides.style.transform = `translateY(-${offset}%)`;
   }
 
   function goToPrevSlide() {
-    currentIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+    currentIndex =
+      currentIndex === 0 ? images.length - visibleImages : currentIndex - 1;
     updateSlidePosition();
-    resetSlideShow();
+    resetAutoScroll();
   }
 
   function goToNextSlide() {
-    currentIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+    currentIndex =
+      currentIndex >= images.length - visibleImages ? 0 : currentIndex + 1;
     updateSlidePosition();
-    resetSlideShow();
+    resetAutoScroll();
   }
 
-  function goToSlide(index) {
-    currentIndex = index;
-    updateSlidePosition();
-    resetSlideShow();
+  // Автоматична прокрутка
+  function startAutoScroll() {
+    autoScroll = setInterval(goToNextSlide, autoScrollInterval);
   }
+
+  function stopAutoScroll() {
+    clearInterval(autoScroll);
+  }
+
+  function resetAutoScroll() {
+    stopAutoScroll();
+    startAutoScroll();
+  }
+
+  startAutoScroll();
+
+  slides.addEventListener('mouseenter', stopAutoScroll);
+  slides.addEventListener('mouseleave', startAutoScroll);
+
+  // Лайтбокс
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-content img');
+  const closeLightbox = document.querySelector('.lightbox .close');
+  const lightboxPrev = document.querySelector('.lightbox-prev');
+  const lightboxNext = document.querySelector('.lightbox-next');
 
   function openLightbox(index) {
     currentIndex = index;
@@ -457,31 +451,27 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxImg.src = images[currentIndex].src;
   }
 
-  function startSlideShow() {
-    slideInterval = setInterval(goToNextSlide, 3000);
-  }
+  // Встановлення подій для кожного зображення
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
 
-  function resetSlideShow() {
-    clearInterval(slideInterval);
-    startSlideShow();
-  }
-
-  prev.addEventListener('touchstart', goToPrevSlide);
-  next.addEventListener('touchstart', goToNextSlide);
-  prev.addEventListener('click', goToPrevSlide);
-  next.addEventListener('click', goToNextSlide);
-
-  lightboxPrev.addEventListener('click', showPrevImage);
-  lightboxNext.addEventListener('click', showNextImage);
-
+  // Закриття лайтбоксу
   closeLightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
   });
 
+  lightboxPrev.addEventListener('click', showPrevImage);
+  lightboxNext.addEventListener('click', showNextImage);
+
+  // Закриття лайтбоксу при кліку поза ним
   window.addEventListener('click', event => {
-    if (event.target === lightbox) lightbox.style.display = 'none';
+    if (event.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
   });
 
+  // Навігація за допомогою клавіш
   document.addEventListener('keydown', event => {
     if (lightbox.style.display === 'block') {
       if (event.key === 'ArrowRight') showNextImage();
@@ -492,12 +482,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.key === 'ArrowRight') goToNextSlide();
     }
   });
-
-  images.forEach((img, index) => {
-    img.addEventListener('click', () => openLightbox(index));
-  });
-
-  startSlideShow();
 });
 
 /* Lazy Loading */

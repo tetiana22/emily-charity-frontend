@@ -71,17 +71,36 @@ img {
   background-color: var(--container-bg-color);
 }
 
+h2 {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  font-weight: 800;
+  font-size: 22px;
+
+  text-align: center;
+  padding: 2px;
+}
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
     padding: 0 32px;
+  }
+  .h2 {
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+    font-weight: 800;
+    font-size: 34px;
+    text-align: center;
+    color: #000;
   }
 }
 @media screen and (min-width: 1440px) {
   html {
     scroll-behavior: smooth;
   }
-
+  .h2 {
+    margin-bottom: 20px;
+  }
   .container {
     max-width: 1440px;
     padding: 0 60px;
@@ -234,7 +253,7 @@ header img:hover {
 .main {
   gap: 20px;
   animation: fadeIn 1s ease-in-out;
-  height: 150px;
+  height: 195px;
   padding: 10px 5px;
   position: relative;
   overflow: hidden;
@@ -254,23 +273,14 @@ header img:hover {
   object-fit: cover;
   position: absolute;
   right: 15px;
+  bottom: 0;
 }
 
 .main-about {
-  font-family: 'Satisfy', cursive;
-  font-weight: 800;
-  color: #082b1cd1;
+  font-size: 20px;
+  color: #000;
   width: 140px;
 }
-
-.main-title {
-  font-weight: 800;
-  font-size: 18px;
-  text-align: left;
-  margin-bottom: 10px; /* Простір між заголовком і кнопкою */
-  padding-left: 5px;
-}
-
 .btn-container {
   width: 220px;
   text-align: left;
@@ -278,19 +288,17 @@ header img:hover {
 }
 
 .donate-button {
-  padding: 0 10px;
+  padding: 0 20px;
   background-color: #1a4f21;
   color: white;
   text-decoration: none;
   border: none;
   border-radius: 5px;
-  font-weight: bold;
   height: 35px;
-  line-height: 35px;
   text-align: center;
   transition: background-color 0.3s;
   cursor: pointer;
-  margin-top: 10px;
+  margin: 10px 10px;
 }
 
 .donate-button:hover {
@@ -322,8 +330,9 @@ header img:hover {
   }
 
   .main-title {
-    font-size: 24px;
-    margin-bottom: 65px;
+    font-size: 34px;
+    line-height: 1.2em;
+    margin-bottom: 35px;
   }
   .btn-text {
     display: block;
@@ -332,28 +341,29 @@ header img:hover {
     width: 260px;
   }
 }
+@media (min-width: 1440px) {
+  .main img {
+    width: 270px;
+    height: 270px;
+    right: 390px;
+    bottom: 0px;
+  }
+  .main-about {
+    font-size: 20px;
+    color: #000;
+    width: 540px;
+  }
+}
 
 /*section-about*/
 .about-container {
-  margin-bottom: 20px;
   position: relative;
 }
-.about-context {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  background: white url('../img/leaf2.png') no-repeat left bottom;
-  background-size: 19%;
-  position: relative;
-  z-index: 1;
+.about-information {
+  background-color: #f3e9dd;
+  padding-bottom: 20px;
 }
-.about-context::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-}
+
 /*raised*/
 .raised-info {
   background-color: #1a4f21;
@@ -399,18 +409,61 @@ header img:hover {
     display: flex;
     width: 120px;
   }
+  .count-text {
+    color: whitesmoke;
+    font-size: 16px;
+  }
+  .raised-info-block {
+    gap: 5px;
+    display: flex;
+    width: 100px;
+  }
+  .count {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    line-height: 1.2em;
+  }
 }
-
+@media (min-width: 1440px) {
+  .raised-icon {
+    width: 82px;
+    height: 62px;
+  }
+  .raised-info {
+    padding: 30px 0 30px 180px;
+  }
+  .count-text {
+    color: whitesmoke;
+    font-size: 18px;
+    line-height: 1.2em;
+  }
+  .raised-info-block {
+    gap: 5px;
+    display: flex;
+    width: 130px;
+  }
+  .raised-info-each {
+    width: 130px;
+  }
+  .count {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    line-height: 1.2em;
+  }
+}
+.horizontal-line {
+  width: 85%;
+  height: 1px;
+  background-color: #082b1cd1; /* Колір лінії */
+  margin: auto; /* Відступи і вирівнювання по центру */
+}
 .about-title {
-  background: linear-gradient(135deg, #63aa8bd1, #1c1c1c);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-align: center;
-  font-size: 22px;
-  margin: 10px 0 20px;
+  padding: 20px 0 5px;
 }
 .about-text {
+  padding: 0 5px;
   text-align: justify;
   margin-bottom: 5px;
   overflow: hidden;
@@ -424,13 +477,13 @@ header img:hover {
 .read-more {
   display: inline-block;
   cursor: pointer;
-  color: #007bff;
+  color: #1a4f21;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s, transform 0.3s;
 }
 .read-more:hover {
-  color: #0056b3;
+  color: #1a4f21;
   transform: scale(1.05);
 }
 .read-more:focus {
@@ -439,7 +492,7 @@ header img:hover {
 .read-less {
   display: inline-block;
   cursor: pointer;
-  color: #007bff;
+  color: #1a4f21;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s, transform 0.3s;
@@ -451,10 +504,14 @@ header img:hover {
   background-color: #f3e9dd;
 }
 
-.about-img-text {
+/* .about-img-text {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  font-weight: 800;
+  font-size: 16px;
   margin-bottom: 20px;
   text-align: center;
-}
+} */
 .about-img-descr {
   margin-bottom: 30px;
 }
@@ -466,25 +523,80 @@ header img:hover {
   display: none;
 }
 .img-main {
-  margin: 0 110px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 @media (min-width: 768px) {
+  .about-information {
+    padding-top: 40px;
+  }
+  .about-title {
+    margin-bottom: 20px;
+    font-size: 34px;
+  }
+  .about-text {
+    padding: 0 20px;
+  }
   .about-pictures {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.8;
-    cursor: pointer;
-    margin-bottom: 5px;
-    display: block;
+    gap: 10px;
+    display: flex;
+    height: 120px;
+  }
+  .about-pictures img {
+    width: 160px;
+    height: 140px;
   }
   .about-img {
     display: flex;
+    padding-bottom: 30px;
+    position: relative;
+  }
+  .img-first {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .img-second {
+    position: absolute;
+    bottom: 0;
+    left: 25%;
   }
   .about-context-img {
-    width: 200px;
+    width: 50%;
+  }
+  .img-main {
+    display: none;
+  }
+  .last-picture {
+    width: 50%;
+    display: block;
+    position: absolute; /* використовуємо absolute для точного позиціонування */
+    bottom: 0; /* розміщуємо внизу */
+    left: 50%;
+  }
+  .about-img-descr {
+    margin-bottom: 5px;
+    padding: 0 10px;
+  }
+  .about-img-text {
+    font-size: 34px;
+  }
+}
+@media (min-width: 1440px) {
+  .about-img {
+    height: 400px;
+  }
+  .about-img-text {
+    margin-bottom: 20px;
+  }
+  .about-img-descr {
+    font-size: 18px;
+  }
+  .about-pictures img {
+    height: 250px;
+    width: 300px;
+    margin: 0 12px;
   }
 }
 
@@ -510,14 +622,9 @@ header img:hover {
 
 /* event */
 .events-container {
-  background: url('../img/painting.png') no-repeat left bottom,
-    url('../img/fun.png') no-repeat right bottom;
-  background-size: 20%, 20%;
-  padding: 40px;
-  max-height: 570px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
+  background-color: #f3e9dd;
+  height: 410px;
+  padding: 10px 10px;
 }
 .events-container::before {
   content: '';
@@ -529,49 +636,34 @@ header img:hover {
   background-color: rgba(255, 255, 255, 0.7);
   z-index: -1;
 }
+.events-bgr {
+  background-color: #1a4f21;
+  height: 260px;
+}
 .events-img {
-  position: relative;
-  width: 100%;
-  max-width: 220px;
-  max-height: 320px;
-  margin: 0 auto;
+  width: 95%;
+  height: 100%;
+  max-width: 300px;
+  margin: auto;
+  padding-top: 20px;
   overflow: hidden;
-  border-radius: 8px;
 }
 .event-text {
   text-align: justify;
-  margin-bottom: 20px;
+  padding: 10px 5px 10px;
 }
+
 .slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  height: 260px;
 }
+
 .slides img {
   cursor: pointer;
   flex-shrink: 0;
-}
-.navigation {
-  position: absolute;
-  top: 50%;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-.navigation .prev,
-.navigation .next {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 12px;
-  color: white;
-  font-weight: bold;
-  border-radius: 50%;
-  user-select: none;
-  transition: background-color 0.3s;
-}
-.navigation .prev:hover,
-.navigation .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  object-fit: cover;
+  height: 90%;
+  margin-bottom: 5px;
 }
 
 .lightbox {
@@ -635,6 +727,11 @@ header img:hover {
 .lightbox-next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+.event-tea-icon {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 @keyframes zoomIn {
   from {
     transform: scale(0);
@@ -645,33 +742,89 @@ header img:hover {
 }
 
 @media (min-width: 375px) {
-  .events-container {
-    height: 568px;
-  }
   .events-img {
-    max-width: 220px;
-    max-height: 320px;
+    max-width: 100%;
+    max-height: 820px;
   }
 }
+
 @media (min-width: 768px) {
+  .about-title {
+    margin-top: 20px;
+  }
   .events-container {
-    height: 544px;
-    background-size: 22%, 22%;
+    padding: 0;
+    height: 500px;
+    flex: 1;
+    overflow-y: hidden;
+  }
+  .event-text {
+    padding: 0 30px;
+    margin-bottom: 40px;
   }
   .events-img {
-    max-width: 400px;
-    max-height: 400px;
+    height: 600px;
+    width: 320px;
+    padding: 0;
+  }
+  .events {
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+  }
+
+  .events-bgr {
+    flex: 1;
+    height: 500px;
+  }
+
+  .slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .slides {
+    display: flex;
+    flex-direction: column; /* Вертикальне розташування зображень */
+    height: 750px;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slides img {
+    width: 100%;
+    object-fit: cover;
+    height: 35%;
+    margin-bottom: 10px;
+  }
+
+  .slides img:last-child {
+    margin-bottom: 0; /* Прибираємо відступ для останнього зображення */
+  }
+
+  /* Прибираємо індикатори (крапочки) */
+  .indicators {
+    display: none;
   }
 }
+
 @media (min-width: 1440px) {
   .events-img {
-    max-width: 700px;
-    max-height: 480px;
+    height: 100%;
+    width: 600px;
   }
   .events-container {
-    height: 700px;
     background-size: 25%, 25%;
     padding: 40px;
+  }
+  .events-bgr {
+    height: 500px;
+  }
+  .slides img {
+    height: 60%;
   }
 }
 
@@ -697,6 +850,38 @@ header img:hover {
 
 .hidden {
   display: none;
+}
+
+/*team*/
+.team {
+  background-color: #f3e9dd;
+}
+.team-container {
+  padding: 20px;
+  position: relative;
+}
+
+.team-title {
+  margin: 10px 0 20px;
+}
+
+.yellow-circle {
+  width: 70px;
+  height: 70px;
+  background-color: yellow;
+  border-radius: 50%; /* Це створює коло */
+
+  position: relative; /* Потрібно для розташування зображення всередині */
+}
+
+.image-overlay {
+  width: 70px; /* Встановлюємо ширину зображення такою ж, як у кола */
+  height: 80px; /* Встановлюємо висоту зображення такою ж, як у кола */
+  object-fit: cover; /* Забезпечує, що зображення покриває коло без спотворення */
+  position: absolute;
+  border-radius: 30px;
+  top: -15%; /* Зміщує зображення на 30% вверх над колом */
+  left: 0; /* Вирівнює зображення по лівому краю кола */
 }
 
 /* footer */
