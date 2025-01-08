@@ -288,6 +288,11 @@ export async function closeModal() {
     if (paymentMessage) paymentMessage.textContent = '';
 
     document.getElementById('custom-amount').value = '';
+    // Додаємо скидання активного стану для всіх кнопок з класом .btn
+    const allButtons = document.querySelectorAll('.btn');
+    allButtons.forEach(button => {
+      button.classList.remove('active'); // Видаляємо клас active
+    });
   } else {
     console.error('Modal element not found.');
   }

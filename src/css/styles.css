@@ -64,12 +64,17 @@ img {
   height: auto;
 }
 .container {
+  width: min(100% - 30px, 1440px);
+  margin-inline: auto;
+  background-color: #f3e9dd;
+}
+
+/* .container {
   width: 100%;
   max-width: 375px;
-  padding: 0 16px;
   margin: 0 auto;
-  background-color: var(--container-bg-color);
-}
+  background-color: #f3e9dd;
+} */
 
 h2 {
   font-family: 'Lobster', cursive;
@@ -80,12 +85,11 @@ h2 {
   text-align: center;
   padding: 2px;
 }
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
-    padding: 0 32px;
   }
-  .h2 {
+  h2 {
     font-family: 'Lobster', cursive;
     font-weight: bold;
     font-weight: 800;
@@ -103,9 +107,8 @@ h2 {
   }
   .container {
     max-width: 1440px;
-    padding: 0 60px;
   }
-}
+} */
 
 /*header*/
 .header-container {
@@ -155,7 +158,7 @@ nav {
   font-size: 18px;
 }
 .nav-links-main li:hover {
-  color: #63aa8bd1;
+  color: #1a4f21;
 }
 .burger-menu {
   display: none;
@@ -258,29 +261,35 @@ header img:hover {
   position: relative;
   overflow: hidden;
   background: linear-gradient(to right, #f3e9dd 50%, #ffda00 50%);
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
 }
 
 .main-info {
-  display: flex; /* Горизонтальне розташування елементів */
-  flex-direction: row; /* Картинка ліворуч, текст і кнопка праворуч */
-  align-items: center; /* Вирівнювання по вертикалі */
-  gap: 20px; /* Відстань між елементами */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
 .main img {
   width: 130px;
-  height: 160px;
+  height: auto;
   object-fit: cover;
   position: absolute;
-  right: 15px;
+  right: calc(50% - 130px);
   bottom: 0;
 }
 
 .main-about {
   font-size: 20px;
   color: #000;
-  width: 140px;
+  max-width: 140px;
+  text-align: left;
 }
+
 .btn-container {
   width: 220px;
   text-align: left;
@@ -302,7 +311,7 @@ header img:hover {
 }
 
 .donate-button:hover {
-  background-color: var(--donate-button-bg-color-hover);
+  background-color: #ffda00;
 }
 
 .btn-text {
@@ -310,9 +319,12 @@ header img:hover {
   font-size: 14px;
   font-weight: 500;
 }
+
+/* Адаптивність */
 @media (min-width: 375px) {
   .main img {
-    right: 42px;
+    width: 165px;
+    right: calc(50% - 165px); /* Розташування по лівому краю жовтої частини */
   }
 }
 
@@ -323,9 +335,8 @@ header img:hover {
   }
 
   .main img {
-    width: 270px;
-    height: 270px;
-    right: 82px;
+    width: 260px;
+    right: calc(50% - 260px); /* Розташування по лівому краю жовтої частини */
     bottom: 0px;
   }
 
@@ -334,24 +345,27 @@ header img:hover {
     line-height: 1.2em;
     margin-bottom: 35px;
   }
+
   .btn-text {
     display: block;
   }
+
   .main-about {
-    width: 260px;
+    max-width: 260px;
   }
 }
+
 @media (min-width: 1440px) {
   .main img {
-    width: 270px;
-    height: 270px;
-    right: 390px;
+    width: 300px;
+    right: calc(50% - 300px); /* Розташування по лівому краю жовтої частини */
     bottom: 0px;
   }
+
   .main-about {
     font-size: 20px;
     color: #000;
-    width: 540px;
+    max-width: 540px;
   }
 }
 
@@ -504,14 +518,6 @@ header img:hover {
   background-color: #f3e9dd;
 }
 
-/* .about-img-text {
-  font-family: 'Lobster', cursive;
-  font-weight: bold;
-  font-weight: 800;
-  font-size: 16px;
-  margin-bottom: 20px;
-  text-align: center;
-} */
 .about-img-descr {
   margin-bottom: 30px;
 }
@@ -551,6 +557,7 @@ header img:hover {
     display: flex;
     padding-bottom: 30px;
     position: relative;
+    overflow: hidden;
   }
   .img-first {
     position: absolute;
@@ -571,9 +578,11 @@ header img:hover {
   .last-picture {
     width: 50%;
     display: block;
-    position: absolute; /* використовуємо absolute для точного позиціонування */
-    bottom: 0; /* розміщуємо внизу */
+    position: absolute;
+    bottom: 0;
     left: 50%;
+    object-fit: cover;
+    max-height: 100%;
   }
   .about-img-descr {
     margin-bottom: 5px;
@@ -599,26 +608,6 @@ header img:hover {
     margin: 0 12px;
   }
 }
-
-/* .fullscreen-img {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-  cursor: zoom-out;
-}
-@keyframes fadeInUp {
-  from {
-    transform: translateY(40px);
-  }
-  to {
-    transform: translateY(0);
-  }
-} */
 
 /* event */
 .events-container {
@@ -899,8 +888,8 @@ header img:hover {
   height: 80px; /* Встановлюємо висоту зображення такою ж, як у кола */
   object-fit: cover; /* Забезпечує, що зображення покриває коло без спотворення */
   position: absolute;
-  border-radius: 30px;
-  top: -15%; /* Зміщує зображення на 30% вверх над колом */
+  border-radius: 50px;
+  top: -10%; /* Зміщує зображення на 30% вверх над колом */
   left: 0; /* Вирівнює зображення по лівому краю кола */
 }
 
@@ -916,7 +905,7 @@ header img:hover {
   .image-overlay {
     width: 100px; /* Встановлюємо ширину зображення такою ж, як у кола */
     height: 120px; /* Встановлюємо висоту зображення такою ж, як у кола */
-    top: -25%; /* Зміщує зображення на 30% вверх над колом */
+    top: -15%; /* Зміщує зображення на 30% вверх над колом */
   }
   .circles {
     gap: 100px;
@@ -1056,18 +1045,18 @@ footer {
   transition: background-color 0.3s, transform 0.3s;
 }
 .btn.active {
-  background-color: var(--btn-active-bg-color);
+  background-color: #1a4f21;
   color: var(--btn-active-color);
   transform: scale(1.1);
 }
 .btn:hover {
   opacity: 0.8;
-  background-color: var(--btn-bg-color-hover);
+  background-color: #1a4f21;
   color: var(--btn-active-color);
 }
 .btn-continue {
   border-radius: 4px;
-  background-color: var(--btn-continue-bg-color);
+  background-color: #ffda00;
   font-weight: 500;
   height: 35px;
   color: white;
@@ -1075,7 +1064,7 @@ footer {
   cursor: pointer;
 }
 .btn-continue:hover {
-  background-color: var(--btn-continue-bg-color-hover);
+  background-color: #1a4f21;
 }
 .input-amount {
   padding: 10px;
