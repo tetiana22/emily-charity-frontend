@@ -291,6 +291,10 @@ header img:hover {
     width: 165px;
     right: calc(50% - 165px); /* Розташування по лівому краю жовтої частини */
   }
+  .main-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -494,6 +498,15 @@ header img:hover {
 .about-img-text {
   margin-bottom: 10px;
 }
+@media (min-width: 375px) {
+  .about-img-text {
+    font-size: 28px;
+  }
+  .about-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+}
 @media (min-width: 768px) {
   .about-information {
     padding-top: 40px;
@@ -550,6 +563,9 @@ header img:hover {
   .about-img-descr {
     padding: 0 10px;
     margin-bottom: 0;
+  }
+  .about-img-text {
+    font-size: 34px;
   }
 }
 
@@ -869,7 +885,11 @@ header img:hover {
   top: -10%; /* Зміщує зображення на 30% вверх над колом */
   left: 0; /* Вирівнює зображення по лівому краю кола */
 }
-
+@media (min-width: 375px) {
+  .team-title {
+    font-size: 28px;
+  }
+}
 @media (min-width: 768px) {
   .yellow-circle {
     width: 100px;
