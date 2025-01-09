@@ -25,9 +25,19 @@ const apiRequest = async (endpoint, method, body) => {
   }
 };
 
-export const createPayPalOrder = amount =>
-  apiRequest('/create-paypal-order', 'POST', { amount });
+// export const createPayPalOrder = amount =>
+//   apiRequest('/create-paypal-order', 'POST', { amount });
 
+export const createPayPalOrder = async amount => {
+  try {
+    // Очікуємо відповідь від API
+    const data = await apiRequest('/create-paypal-order', 'POST', { amount });
+    return data; // Повертаємо результат
+  } catch (error) {
+    console.error('Error creating PayPal order:', error); // Логування помилки
+    throw error; // Проброс помилки далі
+  }
+};
 export const createGoCardlessBillingRequest = (
   email,
   givenName,

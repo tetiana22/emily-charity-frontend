@@ -131,7 +131,7 @@ h2 {
   color: #082b1cd1;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .logo {
@@ -254,16 +254,13 @@ header img:hover {
 
 /*main*/
 .main {
-  gap: 20px;
   animation: fadeIn 1s ease-in-out;
   height: 195px;
-  padding: 10px 5px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(to right, #f3e9dd 50%, #ffda00 50%);
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   justify-content: flex-start;
 }
 
@@ -286,14 +283,21 @@ header img:hover {
 .main-about {
   font-size: 20px;
   color: #000;
-  max-width: 140px;
+  width: min(
+    100%,
+    50%
+  ); /* Дозволяє тексту займати до 50% ширини, але не більше */
   text-align: left;
+  padding: 0 10px; /* Відступи для зручного читання */
+  box-sizing: border-box; /* Враховує padding у ширину елемента */
 }
 
 .btn-container {
-  width: 220px;
-  text-align: left;
-  padding-left: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
 }
 
 .donate-button {
@@ -331,7 +335,6 @@ header img:hover {
 @media (min-width: 768px) {
   .main {
     height: 280px;
-    padding: 20px 30px;
   }
 
   .main img {
@@ -349,9 +352,8 @@ header img:hover {
   .btn-text {
     display: block;
   }
-
-  .main-about {
-    max-width: 260px;
+  .btn-container {
+    display: grid;
   }
 }
 
@@ -360,12 +362,6 @@ header img:hover {
     width: 300px;
     right: calc(50% - 300px); /* Розташування по лівому краю жовтої частини */
     bottom: 0px;
-  }
-
-  .main-about {
-    font-size: 20px;
-    color: #000;
-    max-width: 540px;
   }
 }
 
@@ -385,12 +381,16 @@ header img:hover {
   grid-template-columns: repeat(3, minmax(80px, 1fr));
   gap: 6px;
   padding: 30px 10px;
+  justify-content: center; /* Вирівнювання колонок по центру */
+  align-items: center; /* Вирівнювання рядків по центру */
 }
 .raised-info-block {
   gap: 5px;
   display: flex;
   width: 90px;
+  margin: 0 auto;
 }
+
 .raised-info-each {
   width: 90px;
 }
@@ -411,9 +411,6 @@ header img:hover {
 }
 
 @media (min-width: 768px) {
-  .raised-info {
-    padding: 30px 0 30px 90px;
-  }
   .raised-icon {
     width: 62px;
     height: 52px;
@@ -444,9 +441,7 @@ header img:hover {
     width: 82px;
     height: 62px;
   }
-  .raised-info {
-    padding: 30px 0 30px 180px;
-  }
+
   .count-text {
     color: whitesmoke;
     font-size: 18px;
@@ -475,9 +470,10 @@ header img:hover {
 }
 .about-title {
   padding: 20px 0 5px;
+  margin-bottom: 10px;
 }
 .about-text {
-  padding: 0 5px;
+  padding: 0 10px;
   text-align: justify;
   margin-bottom: 5px;
   overflow: hidden;
@@ -520,6 +516,7 @@ header img:hover {
 
 .about-img-descr {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .about-pictures {
@@ -532,6 +529,9 @@ header img:hover {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+.about-img-text {
+  margin-bottom: 10px;
 }
 @media (min-width: 768px) {
   .about-information {
@@ -548,6 +548,7 @@ header img:hover {
     gap: 10px;
     display: flex;
     height: 120px;
+    width: 100%;
   }
   .about-pictures img {
     width: 160px;
@@ -563,6 +564,7 @@ header img:hover {
     position: absolute;
     bottom: 0;
     left: 0;
+    margin-left: 20px;
   }
   .img-second {
     position: absolute;
@@ -585,11 +587,27 @@ header img:hover {
     max-height: 100%;
   }
   .about-img-descr {
-    margin-bottom: 5px;
     padding: 0 10px;
+    margin-bottom: 0;
   }
-  .about-img-text {
-    font-size: 34px;
+}
+
+@media (min-width: 1000px) {
+  .about-pictures img {
+    width: 220px;
+    height: 170px;
+  }
+  .about-img {
+    height: 300px;
+  }
+}
+@media (min-width: 1200px) {
+  .about-pictures img {
+    width: 270px;
+    height: 190px;
+  }
+  .about-img {
+    height: 300px;
   }
 }
 @media (min-width: 1440px) {
@@ -606,6 +624,9 @@ header img:hover {
     height: 250px;
     width: 300px;
     margin: 0 12px;
+  }
+  .about-img-text {
+    font-size: 34px;
   }
 }
 
@@ -632,7 +653,6 @@ header img:hover {
 .events-img {
   width: 95%;
   height: 100%;
-  max-width: 300px;
   margin: auto;
   padding-top: 20px;
   overflow: hidden;
@@ -729,13 +749,13 @@ header img:hover {
     transform: scale(1);
   }
 }
-
+/* 
 @media (min-width: 375px) {
   .events-img {
     max-width: 100%;
     max-height: 820px;
   }
-}
+} */
 
 @media (min-width: 768px) {
   .about-title {
@@ -752,8 +772,8 @@ header img:hover {
     margin-bottom: 40px;
   }
   .events-img {
-    height: 600px;
-    width: 320px;
+    height: 100%;
+    width: 100%;
     padding: 0;
   }
   .events {
@@ -801,10 +821,6 @@ header img:hover {
 }
 
 @media (min-width: 1440px) {
-  .events-img {
-    height: 100%;
-    width: 600px;
-  }
   .events-container {
     background-size: 25%, 25%;
     padding: 40px;
@@ -932,6 +948,11 @@ footer {
   max-width: 100%;
   margin: 0 auto;
 }
+.footer-title {
+  text-decoration: underline;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
 .footer-section {
   margin-bottom: 30px;
   padding: 0 20px;
@@ -996,9 +1017,6 @@ footer {
   }
   .footer-section h3 {
     text-align: left;
-  }
-  .footer-icon {
-    justify-content: flex-start;
   }
 }
 @media (min-width: 1440px) {
