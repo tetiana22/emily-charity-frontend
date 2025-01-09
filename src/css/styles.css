@@ -320,8 +320,8 @@ header img:hover {
 
 @media (min-width: 1440px) {
   .main img {
-    width: 300px;
-    right: calc(50% - 300px); /* Розташування по лівому краю жовтої частини */
+    width: 280px;
+    right: calc(50% - 280px);
     bottom: 0px;
   }
 }
@@ -893,6 +893,9 @@ header img:hover {
   .role {
     font-size: 12px;
   }
+  .team-title {
+    font-size: 34px;
+  }
 }
 /* footer */
 footer {
@@ -919,16 +922,7 @@ footer {
   padding: 0 20px;
   flex: 1;
 }
-.footer-section h3 {
-  font-size: 16px;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-  border-bottom: 2px solid #fff;
-  padding-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .footer-section p {
   font-size: 14px;
   line-height: 1.6;
