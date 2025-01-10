@@ -55,6 +55,15 @@ img {
   max-width: 100%;
   height: auto;
 }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
 .container {
   width: min(100% - 30px, 1440px);
   margin-inline: auto;
@@ -244,13 +253,10 @@ header img:hover {
 .main-about {
   font-size: 20px;
   color: #000;
-  width: min(
-    100%,
-    50%
-  ); /* Дозволяє тексту займати до 50% ширини, але не більше */
+  width: min(100%, 50%);
   text-align: left;
-  padding: 0 10px; /* Відступи для зручного читання */
-  box-sizing: border-box; /* Враховує padding у ширину елемента */
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .btn-container {
@@ -267,11 +273,7 @@ header img:hover {
   color: white;
   text-decoration: none;
   border: none;
-  border-radius: 5px;
   height: 35px;
-  text-align: center;
-  transition: background-color 0.3s;
-  cursor: pointer;
   margin: 10px 10px;
 }
 
@@ -675,8 +677,8 @@ header img:hover {
 
 .lightbox .close {
   position: absolute;
-  top: 40px; /* Трохи вище верхнього краю зображення */
-  right: 10px; /* Трохи лівіше від краю зображення */
+  top: 40px;
+  right: 10px;
   color: #f1f1f1;
   font-size: 40px;
   font-weight: bold;
@@ -726,13 +728,6 @@ header img:hover {
     transform: scale(1);
   }
 }
-/* 
-@media (min-width: 375px) {
-  .events-img {
-    max-width: 100%;
-    max-height: 820px;
-  }
-} */
 
 @media (min-width: 768px) {
   .about-title {
@@ -866,24 +861,24 @@ header img:hover {
   width: 70px;
   height: 70px;
   background-color: #ffda00;
-  border-radius: 50%; /* Це створює коло */
-  position: relative; /* Потрібно для розташування зображення всередині */
+  border-radius: 50%;
+  position: relative;
 }
 .green-circle {
   width: 70px;
   height: 70px;
   background-color: #1a4f21;
-  border-radius: 50%; /* Це створює коло */
-  position: relative; /* Потрібно для розташування зображення всередині */
+  border-radius: 50%;
+  position: relative;
 }
 .image-overlay {
-  width: 70px; /* Встановлюємо ширину зображення такою ж, як у кола */
-  height: 80px; /* Встановлюємо висоту зображення такою ж, як у кола */
-  object-fit: cover; /* Забезпечує, що зображення покриває коло без спотворення */
+  width: 70px;
+  height: 80px;
+  object-fit: cover;
   position: absolute;
   border-radius: 50px;
-  top: -10%; /* Зміщує зображення на 30% вверх над колом */
-  left: 0; /* Вирівнює зображення по лівому краю кола */
+  top: -10%;
+  left: 0;
 }
 @media (min-width: 375px) {
   .team-title {
@@ -900,9 +895,9 @@ header img:hover {
     height: 100px;
   }
   .image-overlay {
-    width: 100px; /* Встановлюємо ширину зображення такою ж, як у кола */
-    height: 120px; /* Встановлюємо висоту зображення такою ж, як у кола */
-    top: -15%; /* Зміщує зображення на 30% вверх над колом */
+    width: 100px;
+    height: 120px;
+    top: -15%;
   }
   .circles {
     gap: 100px;
@@ -917,6 +912,7 @@ header img:hover {
     font-size: 34px;
   }
 }
+
 /* footer */
 footer {
   background: #1a4f21;
@@ -1021,20 +1017,14 @@ footer {
   gap: 5px;
 }
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 10px;
-  padding: 3px 8px;
-  min-width: 115px;
+  padding: 3px 5px;
+  min-width: 80px;
   height: 40px;
   border: 1px solid var(--input-border-color);
-  border-radius: 5px;
   background-color: var(--btn-bg-color);
   color: var(--btn-color);
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
+  font-size: 12px;
   transition: background-color 0.3s, transform 0.3s;
 }
 .btn.active {
@@ -1048,13 +1038,10 @@ footer {
   color: var(--btn-active-color);
 }
 .btn-continue {
-  border-radius: 4px;
   background-color: #ffda00;
-  font-weight: 500;
   height: 35px;
   color: white;
   border: none;
-  cursor: pointer;
 }
 .btn-continue:hover {
   background-color: #1a4f21;
@@ -1088,29 +1075,20 @@ footer {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .paypal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 150px;
+  width: 140px;
+  font-size: 14px;
   background-color: #ffc439;
   color: #000;
-  cursor: pointer;
 }
 .gocardless {
-  width: 150px;
-  display: flex;
-  align-items: center;
+  width: 140px;
   border: 1px solid #ccc;
-  justify-content: center;
   height: 100%;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 4px;
+  font-size: 14px;
   background-color: #0070ba;
   color: #f1f252;
-  cursor: pointer;
 }
 .gocardless img {
   width: 26px;
@@ -1120,7 +1098,7 @@ footer {
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   margin-bottom: 10px;
 }
 .modal-content {
@@ -1128,7 +1106,7 @@ footer {
   margin: 20% auto;
   padding: 25px;
   border: 4px solid var(--modal-border-color);
-  width: 450px;
+  width: 300px;
   position: relative;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -1194,7 +1172,6 @@ footer {
 .form input,
 .form button {
   padding: 10px;
-  border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
 }
@@ -1206,16 +1183,7 @@ footer {
   border-color: var(--input-border-color-focus);
   outline: none;
 }
-.form button {
-  border: none;
-  background-color: var(--btn-continue-bg-color);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.form button:hover {
-  background-color: var(--btn-continue-bg-color-hover);
-}
+
 .hidden {
   display: none;
 }
@@ -1223,4 +1191,9 @@ footer {
   color: blue;
   text-decoration: underline;
   cursor: pointer;
+}
+@media (min-width: 375px) {
+  .modal-content {
+    width: 340px;
+  }
 }
