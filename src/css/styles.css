@@ -240,7 +240,9 @@ header img:hover {
   align-items: center;
   gap: 20px;
 }
-
+.main-title {
+  font-size: 20px;
+}
 .main img {
   width: 130px;
   height: auto;
